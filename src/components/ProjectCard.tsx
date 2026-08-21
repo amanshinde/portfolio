@@ -13,6 +13,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const colSpanClass = index % 2 === 0 ? "lg:col-span-7" : "lg:col-span-5";
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group relative pixel-border bg-surface overflow-hidden cursor-pointer hover:border-border-hover transition-all duration-300"
+        className={`group relative pixel-border bg-surface overflow-hidden cursor-pointer hover:border-border-hover transition-all duration-300 ${colSpanClass}`}
         onClick={() => setExpanded(true)}
         role="button"
         tabIndex={0}
@@ -29,9 +30,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         onKeyDown={(e) => e.key === "Enter" && setExpanded(true)}
       >
         {/* Terminal Visual */}
-        <div className="p-4 md:p-5 bg-[#0a0a0a] border-b border-border overflow-x-auto">
+        <div className="p-4 md:p-5 bg-surface-light border-b border-border overflow-x-auto shadow-inner">
           <div className="flex items-center gap-2 mb-3 text-text-muted text-[10px] font-mono">
-            <span className="w-2 h-2 rounded-full bg-[#28ca42]" />
+            <span className="w-2 h-2 rounded-full bg-yellow" />
             <span>project/{project.id}</span>
           </div>
           <pre className="font-mono text-[10px] md:text-xs leading-relaxed text-text-muted">
@@ -54,7 +55,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               {project.number}
             </span>
             <div>
-              <h3 className="font-mono text-lg md:text-xl text-text-primary group-hover:text-green transition-colors">
+              <h3 className="font-mono text-lg md:text-xl text-text-primary group-hover:text-yellow transition-colors">
                 {project.title}
               </h3>
               <p
@@ -76,7 +77,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-0.5 text-[10px] font-mono tracking-wider border border-border text-text-muted group-hover:text-green/80 group-hover:border-green/20 transition-colors"
+                className="px-2 py-0.5 text-[10px] font-mono tracking-wider border border-border text-text-muted group-hover:text-yellow group-hover:border-yellow/30 transition-colors"
               >
                 {tech}
               </span>
@@ -115,7 +116,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               <div className="flex items-center justify-between p-4 md:p-5 border-b border-border">
                 <div className="flex items-center gap-3">
                   <span
-                    className="text-[10px] text-green"
+                    className="text-[10px] text-yellow"
                     style={{ fontFamily: "var(--font-pixel)" }}
                   >
                     {project.number}
@@ -141,7 +142,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                     {project.title}
                   </h3>
                   <p
-                    className="text-[9px] tracking-[0.2em] text-green"
+                    className="text-[9px] tracking-[0.2em] text-yellow"
                     style={{ fontFamily: "var(--font-pixel)" }}
                   >
                     {project.subtitle}
@@ -167,7 +168,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-[10px] font-mono tracking-wider border border-green/30 text-green bg-green/5"
+                        className="px-3 py-1 text-[10px] font-mono tracking-wider border border-yellow/30 text-yellow bg-yellow/5"
                       >
                         {tech}
                       </span>
@@ -186,7 +187,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                         key={j}
                         className="flex gap-3 text-text-secondary text-sm"
                       >
-                        <span className="text-green shrink-0">▸</span>
+                        <span className="text-yellow shrink-0">▸</span>
                         {feature}
                       </li>
                     ))}

@@ -8,14 +8,16 @@
   --border-color: #2a2a2a;
   --border-hover: #3a3a3a;
 
-  --green: #39ff88;
-  --green-dim: #39ff8833;
-  --cyan: #32d7ff;
-  --cyan-dim: #32d7ff22;
+  --yellow: #f4e638;
+  --yellow-dim: #f4e63833;
+  --green: #35e879;
+  --green-dim: #35e87933;
+  --cyan: #38c7d9;
+  --cyan-dim: #38c7d922;
   --purple: #a78bfa;
   --purple-dim: #a78bfa22;
 
-  --text-primary: #f5f5f5;
+  --text-primary: #f3f1e8;
   --text-secondary: #a1a1aa;
   --text-muted: #666666;
 
@@ -35,6 +37,8 @@
   --color-surface-light: var(--bg-surface-light);
   --color-border: var(--border-color);
   --color-border-hover: var(--border-hover);
+  --color-yellow: var(--yellow);
+  --color-yellow-dim: var(--yellow-dim);
   --color-green: var(--green);
   --color-green-dim: var(--green-dim);
   --color-cyan: var(--cyan);
@@ -163,10 +167,78 @@ body {
 
 /* ── Pixel Border ───────────────────────────────────────── */
 .pixel-border {
+  position: relative;
   border: 1px solid var(--border-color);
-  box-shadow:
-    inset 1px 1px 0 var(--border-color),
-    inset -1px -1px 0 var(--border-color);
+}
+
+.pixel-border::before,
+.pixel-border::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+.pixel-border::before {
+  top: -2px;
+  left: -2px;
+}
+
+.pixel-border::after {
+  bottom: -2px;
+  right: -2px;
+}
+
+/* ── Pixel Buttons ───────────────────────────────────────── */
+.pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 16px 24px;
+  text-transform: uppercase;
+  transition: transform 0.1s, box-shadow 0.1s, border-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+}
+
+.pixel-btn-primary {
+  background-color: var(--yellow);
+  color: var(--bg-primary);
+  border: 2px solid var(--yellow);
+  box-shadow: 4px 4px 0px 0px rgba(244, 230, 56, 0.4);
+}
+
+.pixel-btn-primary:hover {
+  box-shadow: 6px 6px 0px 0px rgba(244, 230, 56, 0.6);
+}
+
+.pixel-btn-primary:active {
+  box-shadow: 0px 0px 0px 0px rgba(244, 230, 56, 0.6);
+}
+
+.pixel-btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  box-shadow: 4px 4px 0px 0px rgba(243, 241, 232, 0.1);
+}
+
+.pixel-btn-secondary:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  box-shadow: 6px 6px 0px 0px rgba(244, 230, 56, 0.3);
+}
+
+.pixel-btn-secondary:active {
+  box-shadow: 0px 0px 0px 0px rgba(244, 230, 56, 0.3);
 }
 
 .pixel-border-green {

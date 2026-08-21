@@ -16,7 +16,7 @@ interface CodeLine {
 const codeLines: CodeLine[] = [
   {
     tokens: [
-      { text: "const ", className: "text-purple" },
+      { text: "const ", className: "text-yellow" },
       { text: "developer", className: "text-text-primary" },
       { text: " = {", className: "text-text-secondary" },
     ],
@@ -82,7 +82,7 @@ const approaches = [
     title: "Web Applications",
     description:
       "Responsive and scalable applications using React, Node.js, Express, and MongoDB.",
-    accent: "green" as const,
+    accent: "yellow" as const,
   },
   {
     icon: Eye,
@@ -96,49 +96,87 @@ const approaches = [
     title: "User Experiences",
     description:
       "Clean and intuitive interfaces with an emphasis on usability and responsive design.",
-    accent: "purple" as const,
+    accent: "green" as const,
   },
 ];
 
 const accentColors = {
-  green: {
-    border: "border-green/30",
-    hoverBorder: "hover:border-green/60",
-    text: "text-green",
-    bg: "bg-green/5",
-    glow: "group-hover:shadow-[0_0_15px_rgba(57,255,136,0.08)]",
+  yellow: {
+    border: "border-yellow/30",
+    hoverBorder: "hover:border-yellow/60",
+    text: "text-yellow",
+    bg: "bg-yellow/5",
+    glow: "group-hover:shadow-[0_0_15px_rgba(244,230,56,0.08)]",
   },
   cyan: {
     border: "border-cyan/30",
     hoverBorder: "hover:border-cyan/60",
     text: "text-cyan",
     bg: "bg-cyan/5",
-    glow: "group-hover:shadow-[0_0_15px_rgba(50,215,255,0.08)]",
+    glow: "group-hover:shadow-[0_0_15px_rgba(56,199,217,0.08)]",
   },
-  purple: {
-    border: "border-purple/30",
-    hoverBorder: "hover:border-purple/60",
-    text: "text-purple",
-    bg: "bg-purple/5",
-    glow: "group-hover:shadow-[0_0_15px_rgba(167,139,250,0.08)]",
+  green: {
+    border: "border-green/30",
+    hoverBorder: "hover:border-green/60",
+    text: "text-green",
+    bg: "bg-green/5",
+    glow: "group-hover:shadow-[0_0_15px_rgba(53,232,121,0.08)]",
   },
 };
 
 export default function About() {
   return (
     <section id="about" className="relative py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="01" label="ABOUT" />
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Code Block */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Description */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
+            className="lg:col-span-5 flex flex-col justify-center"
           >
-            <div className="pixel-border bg-surface p-5 md:p-6">
+            <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-6">
+              Aman Shinde is a Computer Science engineer with hands-on experience
+              in full-stack development and Python application development. He has
+              worked with MERN technologies, Python, computer vision, databases,
+              REST APIs, and developer tools.
+            </p>
+            <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-8">
+              Currently focused on building responsive web applications and
+              intelligent software systems that bridge technology and real-world
+              utility.
+            </p>
+
+            {/* Quick Stats */}
+            <div className="flex flex-wrap gap-4 font-mono text-xs">
+              <div className="px-3 py-2 pixel-border">
+                <span className="text-text-muted block mb-1">EDUCATION</span>
+                <span className="text-yellow">B.E. CSE</span>
+              </div>
+              <div className="px-3 py-2 pixel-border">
+                <span className="text-text-muted block mb-1">FOCUS</span>
+                <span className="text-cyan">Full Stack</span>
+              </div>
+              <div className="px-3 py-2 pixel-border">
+                <span className="text-text-muted block mb-1">ALSO</span>
+                <span className="text-green">CV / ML</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Code Block */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="lg:col-span-7"
+          >
+            <div className="pixel-border bg-surface p-5 md:p-6 shadow-xl">
               <div className="flex items-center gap-2 mb-4 text-text-muted text-xs font-mono">
                 <span className="text-green">{"///"}</span>
                 <span>about.ts</span>
@@ -161,43 +199,6 @@ export default function About() {
                   ))}
                 </code>
               </pre>
-            </div>
-          </motion.div>
-
-          {/* Description */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="flex flex-col justify-center"
-          >
-            <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-6">
-              Aman Shinde is a Computer Science engineer with hands-on experience
-              in full-stack development and Python application development. He has
-              worked with MERN technologies, Python, computer vision, databases,
-              REST APIs, and developer tools.
-            </p>
-            <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-8">
-              Currently focused on building responsive web applications and
-              intelligent software systems that bridge technology and real-world
-              utility.
-            </p>
-
-            {/* Quick Stats */}
-            <div className="flex gap-6 font-mono text-xs">
-              <div className="px-3 py-2 border border-border">
-                <span className="text-text-muted block mb-1">EDUCATION</span>
-                <span className="text-text-primary">B.E. CSE</span>
-              </div>
-              <div className="px-3 py-2 border border-border">
-                <span className="text-text-muted block mb-1">FOCUS</span>
-                <span className="text-text-primary">Full Stack</span>
-              </div>
-              <div className="px-3 py-2 border border-border">
-                <span className="text-text-muted block mb-1">ALSO</span>
-                <span className="text-text-primary">CV / ML</span>
-              </div>
             </div>
           </motion.div>
         </div>

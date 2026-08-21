@@ -34,6 +34,12 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const section = href.replace("#", "");
+    window.dispatchEvent(new CustomEvent("nav-click", { detail: { section } }));
+    setMobileOpen(false);
+  };
+
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
@@ -46,33 +52,34 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+        className="w-full mx-auto px-6 sm:px-8 lg:px-12 h-24 flex items-center justify-between"
         role="navigation"
         aria-label="Main navigation"
       >
         {/* Logo */}
         <a
           href="#"
-          className="font-mono text-sm md:text-base text-green tracking-wider hover:text-green transition-colors terminal-glow"
+          className="font-mono text-lg md:text-2xl text-yellow tracking-wider hover:text-yellow transition-colors terminal-glow"
         >
           AMAN_SHINDE
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-xs tracking-widest text-text-secondary hover:text-green transition-colors duration-200"
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="font-mono text-sm md:text-base tracking-widest text-text-secondary hover:text-yellow transition-colors duration-200"
             >
               {link.label}
             </a>
           ))}
-          <div className="flex items-center gap-2 ml-4 px-3 py-1 border border-border">
-            <span className="w-2 h-2 rounded-full bg-green animate-glow-pulse" />
+          <div className="flex items-center gap-3 ml-6 px-4 py-2 border border-border">
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow animate-glow-pulse" />
             <span
-              className="text-[9px] tracking-widest text-green"
+              className="text-[11px] md:text-[12px] tracking-widest text-yellow"
               style={{ fontFamily: "var(--font-pixel)" }}
             >
               OPEN TO WORK
@@ -83,7 +90,7 @@ export default function Navbar() {
         {/* Mobile Hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 text-text-secondary hover:text-green transition-colors"
+          className="md:hidden p-2 text-text-secondary hover:text-yellow transition-colors"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >

@@ -1,26 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, ArrowDown, FileDown } from "lucide-react";
+import { Mail, ArrowDown } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
-import Terminal from "./Terminal";
-
-const heroTerminalLines = [
-  "aman@portfolio:~$ npm run build",
-  "",
-  "> portfolio@1.0.0 build",
-  "> next build",
-  "",
-  "  ✓ Compiled successfully",
-  "  ✓ Linting and type-checking passed",
-  "  ✓ Generated static pages (7/7)",
-  "  ✓ Collecting build traces",
-  "  ✓ Optimized production assets",
-  "",
-  "  BUILD COMPLETE ████████████████ 100%",
-  "",
-  "aman@portfolio:~$ _",
-];
+import PixelDeveloper from "./PixelDeveloper";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,7 +11,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.3,
+      delayChildren: 0.2,
     },
   },
 };
@@ -46,25 +29,26 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center pt-16 overflow-hidden"
+      className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden"
     >
-      {/* Decorative code elements */}
-      <div className="absolute top-32 right-8 text-text-muted/20 font-mono text-xs hidden xl:block select-none" aria-hidden="true">
-        <div>{"const build = () => {"}</div>
-        <div>{"  return innovation;"}</div>
-        <div>{"};"}</div>
-      </div>
-      <div className="absolute bottom-32 left-8 text-text-muted/15 font-mono text-xs hidden xl:block select-none" aria-hidden="true">
-        <div>{"while (learning) {"}</div>
-        <div>{"  build();"}</div>
-        <div>{"  improve();"}</div>
-        <div>{"}"}</div>
+      {/* Background Layer: Scattered pixel-art code elements */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.2 }} transition={{ duration: 1 }} className="absolute top-32 right-1/4 text-yellow font-mono text-xs">{"</>"}</motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.1 }} transition={{ duration: 1, delay: 0.2 }} className="absolute top-40 left-12 text-cyan font-mono text-sm font-bold">{"{ }"}</motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.05 }} transition={{ duration: 1, delay: 0.4 }} className="absolute bottom-1/3 left-1/4 text-white font-mono text-xl tracking-widest">{"01"}</motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.15 }} transition={{ duration: 1, delay: 0.3 }} className="absolute top-1/4 left-1/3 text-green font-mono text-xs">npm run dev</motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.1 }} transition={{ duration: 1, delay: 0.5 }} className="absolute bottom-1/4 right-1/3 text-purple font-mono text-xs">const developer</motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.05 }} transition={{ duration: 1, delay: 0.6 }} className="absolute top-1/2 right-12 text-white font-mono text-2xl tracking-widest">{"10"}</motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.1 }} transition={{ duration: 1, delay: 0.7 }} className="absolute bottom-20 right-1/4 text-cyan font-mono text-xs">git commit</motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.15 }} transition={{ duration: 1, delay: 0.8 }} className="absolute top-2/3 left-16 text-yellow font-mono text-xs">import React</motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Content (5 Columns) */}
           <motion.div
+            className="lg:col-span-5 order-2 lg:order-1 lg:pl-12 xl:pl-20"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -72,29 +56,29 @@ export default function Hero() {
             {/* Small label */}
             <motion.div variants={childVariants} className="mb-6">
               <span
-                className="text-[10px] tracking-[0.3em] text-green"
+                className="text-[10px] tracking-[0.3em] text-yellow"
                 style={{ fontFamily: "var(--font-pixel)" }}
               >
-                {">"} HELLO_WORLD
+                {">"} HELLO_WORLD_
               </span>
             </motion.div>
 
             {/* Name */}
             <motion.h1
               variants={childVariants}
-              className="font-mono text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text-primary mb-4"
+              className="font-mono text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-text-primary mb-6 leading-[1.1]"
             >
               AMAN
               <br />
-              <span className="text-green terminal-glow">SHINDE</span>
+              SHINDE
             </motion.h1>
 
             {/* Roles */}
-            <motion.div variants={childVariants} className="mb-6 space-y-1">
-              <p className="font-mono text-sm md:text-base tracking-widest text-cyan">
+            <motion.div variants={childVariants} className="mb-6 space-y-2">
+              <p className="font-mono text-sm md:text-base tracking-widest text-cyan font-bold border-l-2 border-yellow pl-3">
                 FULL STACK DEVELOPER
               </p>
-              <p className="font-mono text-xs md:text-sm tracking-widest text-text-muted">
+              <p className="font-mono text-xs md:text-sm tracking-widest text-text-muted pl-4">
                 COMPUTER SCIENCE ENGINEER
               </p>
             </motion.div>
@@ -102,48 +86,42 @@ export default function Hero() {
             {/* Description */}
             <motion.p
               variants={childVariants}
-              className="text-text-secondary text-sm md:text-base leading-relaxed max-w-lg mb-8"
+              className="text-text-secondary text-sm md:text-base leading-relaxed max-w-lg mb-10"
             >
-              I build responsive web applications and intelligent software using
-              modern web technologies, Python, and computer vision.
+              I build responsive web applications and intelligent software systems using modern web technologies, Python, and computer vision.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               variants={childVariants}
-              className="flex flex-wrap gap-4 mb-8"
+              className="flex flex-wrap gap-6 mb-12"
             >
-              <a
-                href="#work"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-green/10 border border-green text-green font-mono text-xs tracking-wider hover:bg-green/20 transition-all duration-200"
-              >
-                <span>[</span>
-                VIEW PROJECTS
-                <span>]</span>
+              <a href="#work" className="pixel-btn pixel-btn-primary group">
+                <span className="opacity-0 group-hover:opacity-100 absolute left-2 transition-opacity">
+                  {">"}
+                </span>
+                <span className="group-hover:ml-3 transition-all duration-200">
+                  VIEW WORK
+                </span>
               </a>
-              <a
-                href="/resume.pdf"
-                download
-                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary font-mono text-xs tracking-wider hover:border-text-secondary hover:text-text-primary transition-all duration-200"
-              >
-                <FileDown size={14} />
-                DOWNLOAD RESUME
+              <a href="/resume.pdf" download className="pixel-btn pixel-btn-secondary">
+                RESUME
               </a>
             </motion.div>
 
             {/* Social Links */}
             <motion.div
               variants={childVariants}
-              className="flex gap-5"
+              className="flex gap-6 items-center"
             >
               <a
                 href="https://github.com/aman"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub profile"
-                className="text-text-muted hover:text-green transition-colors duration-200"
+                className="text-text-muted hover:text-yellow transition-colors duration-200"
               >
-                <GithubIcon size={18} />
+                <GithubIcon size={20} />
               </a>
               <a
                 href="https://linkedin.com/in/aman"
@@ -152,41 +130,34 @@ export default function Hero() {
                 aria-label="LinkedIn profile"
                 className="text-text-muted hover:text-cyan transition-colors duration-200"
               >
-                <LinkedinIcon size={18} />
+                <LinkedinIcon size={20} />
               </a>
               <a
                 href="mailto:shindeaman31@gmail.com"
                 aria-label="Send email"
-                className="text-text-muted hover:text-purple transition-colors duration-200"
+                className="text-text-muted hover:text-green transition-colors duration-200"
               >
-                <Mail size={18} />
+                <Mail size={20} />
               </a>
             </motion.div>
           </motion.div>
 
-          {/* Right Side — Terminal Visual */}
+          {/* Right Content (7 Columns) - Character */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="hidden lg:block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 50 }}
+            className="lg:col-span-7 order-1 lg:order-2 flex justify-center items-center relative"
           >
-            <Terminal
-              lines={heroTerminalLines}
-              title="aman@portfolio — build"
-              typingEffect={true}
-            />
-            {/* Pixel art decorative elements below terminal */}
-            <div className="mt-4 flex items-center gap-3 text-text-muted/30 font-mono text-[10px]" aria-hidden="true">
-              <span>{"<"}/{">"}</span>
-              <span className="w-px h-3 bg-border" />
-              <span>{"{ }"}</span>
-              <span className="w-px h-3 bg-border" />
-              <span>npm</span>
-              <span className="w-px h-3 bg-border" />
-              <span>git</span>
-              <span className="w-px h-3 bg-border" />
-              <span>python</span>
+            {/* Ambient character glow */}
+            <div className="absolute inset-0 bg-yellow/5 blur-3xl rounded-full scale-150 z-0 hidden lg:block" />
+            
+            {/* Interactive Character Component */}
+            <PixelDeveloper className="w-full max-w-4xl z-10" />
+            
+            {/* Small decorative label for the workspace */}
+            <div className="absolute bottom-0 right-10 text-[8px] font-pixel text-text-muted/40 tracking-[0.2em] hidden lg:block">
+              [ WORKSTATION_01 ]
             </div>
           </motion.div>
         </div>
@@ -195,7 +166,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: 2.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
           <span className="text-text-muted font-mono text-[10px] tracking-widest">
