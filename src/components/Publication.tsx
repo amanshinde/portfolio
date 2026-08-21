@@ -6,7 +6,7 @@ import SectionHeader from "./SectionHeader";
 
 export default function Publication() {
   return (
-    <section id="publication" className="relative py-24 md:py-32">
+    <section id="publication" className="relative py-24 md:py-10">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="05" label="RESEARCH" />
 

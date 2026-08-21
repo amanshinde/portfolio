@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 
 export default function Projects() {
   return (
-    <section id="work" className="relative py-24 md:py-32">
+    <section id="work" className="relative py-24 md:py-10">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="03" label="SELECTED_WORK" />
 

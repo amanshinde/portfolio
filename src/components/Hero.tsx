@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, ArrowDown } from "lucide-react";
+import Link from "next/link";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import PixelDeveloper from "./PixelDeveloper";
 
@@ -96,14 +97,14 @@ export default function Hero() {
               variants={childVariants}
               className="flex flex-wrap gap-6 mb-12"
             >
-              <a href="#work" className="pixel-btn pixel-btn-primary group">
+              <Link href="/work" className="pixel-btn pixel-btn-primary group">
                 <span className="opacity-0 group-hover:opacity-100 absolute left-2 transition-opacity">
                   {">"}
                 </span>
                 <span className="group-hover:ml-3 transition-all duration-200">
                   VIEW WORK
                 </span>
-              </a>
+              </Link>
               <a href="/resume.pdf" download className="pixel-btn pixel-btn-secondary">
                 RESUME
               </a>

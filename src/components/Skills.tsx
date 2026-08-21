@@ -21,7 +21,7 @@ export default function Skills() {
       {categories.map((category, i) => {
         const isLastCategory = i === categories.length - 1;
         const colorClass = accentMap[category.accent] || "text-yellow";
-        
+
         return (
           <div key={category.id}>
             <div className="flex">
@@ -45,7 +45,7 @@ export default function Skills() {
   );
 
   return (
-    <section id="skills" className="relative py-24 md:py-32">
+    <section id="skills" className="relative py-24 md:py-10">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="04" label="TECH_STACK" />
 

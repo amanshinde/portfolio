@@ -31,7 +31,7 @@ const contactLinks = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32 bg-surface/20">
+    <section id="contact" className="relative py-24 md:py-10 bg-surface/20">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="07" label="CONTACT" />
 
@@ -58,7 +58,7 @@ export default function Contact() {
               <span className="text-text-secondary">:~</span>
               <span className="text-text-primary">$</span> ./contact.sh
             </div>
-            
+
             <div className="space-y-6 mb-12">
               <p className="text-text-secondary">
                 <span className="text-cyan">{"["}</span> INIT <span className="text-cyan">{"]"}</span> Connection established.
@@ -101,7 +101,7 @@ export default function Contact() {
             <div className="mt-12 flex items-center gap-2">
               <span className="text-yellow">aman@portfolio</span>
               <span className="text-text-secondary">:~</span>
-              <span className="text-text-primary">$</span> 
+              <span className="text-text-primary">$</span>
               <span className="animate-blink inline-block w-2 h-4 bg-yellow align-middle ml-1"></span>
             </div>
           </div>

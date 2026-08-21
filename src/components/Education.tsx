@@ -6,7 +6,7 @@ import SectionHeader from "./SectionHeader";
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-24 md:py-32 bg-surface/30">
+    <section id="education" className="relative py-24 md:py-10 bg-surface/30">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="06" label="EDUCATION" />
 

@@ -1,15 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "ABOUT", href: "#about" },
-  { label: "WORK", href: "#work" },
-  { label: "EXPERIENCE", href: "#experience" },
-  { label: "SKILLS", href: "#skills" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "WORK", href: "/work" },
+  { label: "EXPERIENCE", href: "/experience" },
+  { label: "SKILLS", href: "/skills" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -35,7 +35,7 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    const section = href.replace("#", "");
+    const section = href.replace("/", "");
     window.dispatchEvent(new CustomEvent("nav-click", { detail: { section } }));
     setMobileOpen(false);
   };
@@ -57,24 +57,24 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         {/* Logo */}
-        <a
-          href="#"
+        <Link
+          href="/"
           className="font-mono text-lg md:text-2xl text-yellow tracking-wider hover:text-yellow transition-colors terminal-glow"
         >
           AMAN_SHINDE
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               className="font-mono text-sm md:text-base tracking-widest text-text-secondary hover:text-yellow transition-colors duration-200"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <div className="flex items-center gap-3 ml-6 px-4 py-2 border border-border">
             <span className="w-2.5 h-2.5 rounded-full bg-yellow animate-glow-pulse" />

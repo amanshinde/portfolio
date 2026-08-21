@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Inter, Press_Start_2P } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import PixelGrid from "@/components/PixelGrid";
+import CRTEffectWrapper from "@/components/CRTEffectWrapper";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
@@ -48,14 +52,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${jetbrainsMono.variable} ${inter.variable} ${pressStart2P.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+        <Navbar />
+        <PixelGrid />
+        <CRTEffectWrapper />
+        <main className="relative z-10 flex-1">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

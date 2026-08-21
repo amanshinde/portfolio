@@ -25,7 +25,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="relative py-24 md:py-32">
+    <section id="experience" className="relative py-24 md:py-10">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="02" label="EXPERIENCE" />
 
@@ -55,7 +55,7 @@ export default function Experience() {
                   className="relative group z-10"
                 >
                   {/* Git Commit Header Row */}
-                  <div 
+                  <div
                     className={`flex items-start gap-4 p-2 -ml-2 rounded hover:bg-surface/50 cursor-pointer transition-colors ${isExpanded ? 'bg-surface/30' : ''}`}
                     onClick={() => toggleExpand(exp.id)}
                   >
@@ -65,13 +65,13 @@ export default function Experience() {
                         {isExpanded && <div className="w-1 h-1 bg-black rounded-full" />}
                       </div>
                     </div>
-                    
+
                     <div className="flex-1 flex flex-wrap items-center gap-x-4 gap-y-1">
                       <span className="text-yellow font-bold">{hash}</span>
                       <span className="text-text-primary whitespace-nowrap">{exp.role} <span className="text-text-muted">at</span> {exp.company}</span>
                       <span className="text-text-muted text-xs ml-auto whitespace-nowrap hidden sm:block">({exp.startDate} - {exp.endDate})</span>
-                      {isExpanded ? 
-                        <ChevronDown size={14} className="text-text-muted ml-auto sm:ml-0" /> : 
+                      {isExpanded ?
+                        <ChevronDown size={14} className="text-text-muted ml-auto sm:ml-0" /> :
                         <ChevronRight size={14} className="text-text-muted ml-auto sm:ml-0" />
                       }
                     </div>
@@ -88,7 +88,7 @@ export default function Experience() {
                         className="overflow-hidden"
                       >
                         <div className="pl-12 py-4 pr-4 border-l-2 border-yellow/20 ml-[10px] my-1 space-y-6 bg-gradient-to-r from-yellow/5 to-transparent">
-                          
+
                           {/* Metadata */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-text-muted">
                             <div>

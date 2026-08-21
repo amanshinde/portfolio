@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Eye, Layout } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 
 interface Token {
@@ -76,23 +75,41 @@ const codeLines: CodeLine[] = [
   },
 ];
 
+const PixelCodeIcon = ({ size, className }: { size: number, className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} shapeRendering="crispEdges">
+    <path d="M9 7h2v2H9V7zm-2 2h2v2H7V9zm-2 2h2v2H5v-2zm2 2h2v2H7v-2zm2 2h2v2H9v-2zm6-8h2v2h-2V7zm2 2h2v2h-2V9zm2 2h2v2h-2v-2zm-2 2h2v2h-2v-2zm-2 2h2v2h-2v-2z" />
+  </svg>
+);
+
+const PixelEyeIcon = ({ size, className }: { size: number, className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} shapeRendering="crispEdges">
+    <path d="M8 8h8v2h2v4h-2v2H8v-2H6v-4h2V8zm4 3h-2v2h2v-2z" />
+  </svg>
+);
+
+const PixelLayoutIcon = ({ size, className }: { size: number, className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} shapeRendering="crispEdges">
+    <path d="M4 4h16v16H4V4zm2 2v2h12V6H6zm0 4v8h4v-8H6zm6 0v8h6v-8h-6z" />
+  </svg>
+);
+
 const approaches = [
   {
-    icon: Code,
+    icon: PixelCodeIcon,
     title: "Web Applications",
     description:
       "Responsive and scalable applications using React, Node.js, Express, and MongoDB.",
     accent: "yellow" as const,
   },
   {
-    icon: Eye,
+    icon: PixelEyeIcon,
     title: "Intelligent Systems",
     description:
       "Computer vision and Python-based applications involving real-time recognition and automation.",
     accent: "cyan" as const,
   },
   {
-    icon: Layout,
+    icon: PixelLayoutIcon,
     title: "User Experiences",
     description:
       "Clean and intuitive interfaces with an emphasis on usability and responsive design.",
@@ -126,7 +143,7 @@ const accentColors = {
 
 export default function About() {
   return (
-    <section id="about" className="relative py-24 md:py-32">
+    <section id="about" className="relative py-10 md:py-10">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader number="01" label="ABOUT" />
 
@@ -151,21 +168,31 @@ export default function About() {
               utility.
             </p>
 
-            {/* Quick Stats */}
-            <div className="flex flex-wrap gap-4 font-mono text-xs">
-              <div className="px-3 py-2 pixel-border">
-                <span className="text-text-muted block mb-1">EDUCATION</span>
-                <span className="text-yellow">B.E. CSE</span>
+            {/* Terminal-Style Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 bg-[#080909] border border-border p-5 shadow-[4px_4px_0_rgba(53,232,121,0.15)] font-mono text-[11px] md:text-xs relative overflow-hidden group"
+            >
+              {/* Scanline overlay */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none opacity-50"></div>
+
+              <div className="flex gap-2 mb-3">
+                <span className="text-green">{">"}</span>
+                <span className="text-text-primary">cat profile.json</span>
               </div>
-              <div className="px-3 py-2 pixel-border">
-                <span className="text-text-muted block mb-1">FOCUS</span>
-                <span className="text-cyan">Full Stack</span>
+              <div className="text-text-muted pl-4 border-l border-border/30 ml-1 space-y-2">
+                <div><span className="text-cyan">"education"</span>: <span className="text-yellow">"B.E. Computer Science"</span>,</div>
+                <div><span className="text-cyan">"focus"</span>: <span className="text-yellow">"Full Stack / Software Engineering"</span>,</div>
+                <div><span className="text-cyan">"interests"</span>: <span className="text-yellow">["CV", "ML", "UI/UX"]</span></div>
               </div>
-              <div className="px-3 py-2 pixel-border">
-                <span className="text-text-muted block mb-1">ALSO</span>
-                <span className="text-green">CV / ML</span>
+              <div className="flex gap-2 mt-3 items-center">
+                <span className="text-green">{">"}</span>
+                <span className="w-2 h-3 bg-green animate-pulse inline-block" />
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Code Block */}
@@ -184,7 +211,14 @@ export default function About() {
               <pre className="font-mono text-xs md:text-sm leading-relaxed overflow-x-auto">
                 <code>
                   {codeLines.map((line, i) => (
-                    <div key={i} className="flex">
+                    <motion.div
+                      key={i}
+                      className="flex"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.2, delay: i * 0.1 + 0.3 }}
+                    >
                       <span className="text-text-muted/40 w-6 text-right mr-4 select-none">
                         {i + 1}
                       </span>
@@ -195,7 +229,7 @@ export default function About() {
                           </span>
                         ))}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </code>
               </pre>
