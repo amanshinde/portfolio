@@ -4,16 +4,77 @@ import { motion } from "framer-motion";
 import { Code, Eye, Layout } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 
-const codeBlock = `const developer = {
-  name: "Aman Shinde",
-  role: "Full Stack Developer",
-  education: "B.E. Computer Science",
-  interests: [
-    "Web Development",
-    "Computer Vision",
-    "UI/UX Design"
-  ]
-};`;
+interface Token {
+  text: string;
+  className?: string;
+}
+
+interface CodeLine {
+  tokens: Token[];
+}
+
+const codeLines: CodeLine[] = [
+  {
+    tokens: [
+      { text: "const ", className: "text-purple" },
+      { text: "developer", className: "text-text-primary" },
+      { text: " = {", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: "  name: ", className: "text-text-secondary" },
+      { text: '"Aman Shinde"', className: "text-green" },
+      { text: ",", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: "  role: ", className: "text-text-secondary" },
+      { text: '"Full Stack Developer"', className: "text-green" },
+      { text: ",", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: "  education: ", className: "text-text-secondary" },
+      { text: '"B.E. Computer Science"', className: "text-green" },
+      { text: ",", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: "  interests: [", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: '    "Web Development"', className: "text-green" },
+      { text: ",", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: '    "Computer Vision"', className: "text-green" },
+      { text: ",", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: '    "UI/UX Design"', className: "text-green" },
+    ],
+  },
+  {
+    tokens: [
+      { text: "  ]", className: "text-text-secondary" },
+    ],
+  },
+  {
+    tokens: [
+      { text: "};", className: "text-text-secondary" },
+    ],
+  },
+];
 
 const approaches = [
   {
@@ -84,16 +145,18 @@ export default function About() {
               </div>
               <pre className="font-mono text-xs md:text-sm leading-relaxed overflow-x-auto">
                 <code>
-                  {codeBlock.split("\n").map((line, i) => (
+                  {codeLines.map((line, i) => (
                     <div key={i} className="flex">
                       <span className="text-text-muted/40 w-6 text-right mr-4 select-none">
                         {i + 1}
                       </span>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: syntaxHighlight(line),
-                        }}
-                      />
+                      <span>
+                        {line.tokens.map((token, j) => (
+                          <span key={j} className={token.className}>
+                            {token.text}
+                          </span>
+                        ))}
+                      </span>
                     </div>
                   ))}
                 </code>
@@ -181,26 +244,4 @@ export default function About() {
       </div>
     </section>
   );
-}
-
-/** Simple syntax highlighting for the code block */
-function syntaxHighlight(line: string): string {
-  let escaped = line
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-
-  // Keywords
-  escaped = escaped.replace(
-    /\b(const|let|var)\b/g,
-    '<span class="text-purple">$1</span>'
-  );
-
-  // Strings
-  escaped = escaped.replace(
-    /(&quot;.*?&quot;|".*?")/g,
-    '<span class="text-green">$1</span>'
-  );
-
-  return escaped;
 }

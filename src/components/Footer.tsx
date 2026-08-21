@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           {/* Copyright */}
           <p className="font-mono text-xs text-text-muted">
-            &copy; {new Date().getFullYear()} AMAN SHINDE
+            &copy; 2026 AMAN SHINDE
           </p>
 
           {/* Built with */}
