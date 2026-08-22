@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type { Project } from "@/data/projects";
 
 interface ProjectRowProps {
@@ -55,6 +56,38 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
             {project.title}
           </h3>
           <p className="label-mono mt-2">{project.subtitle}</p>
+
+          {/* Project Screenshot Preview if available */}
+          {project.image && (
+            <div className="mt-6 border border-border overflow-hidden bg-[#0d0d0d] group-hover:border-[var(--accent)]/40 transition-colors duration-300">
+              <div className="flex items-center justify-between px-3 py-2 border-b border-border bg-surface text-[10px] font-mono">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#333]" />
+                  <span className="w-2 h-2 rounded-full bg-[#333]" />
+                  <span className="w-2 h-2 rounded-full bg-[#333]" />
+                  <span className="ml-2 text-muted truncate max-w-[180px] sm:max-w-[260px]">
+                    {project.liveUrl || project.title}
+                  </span>
+                </div>
+                {project.liveUrl && (
+                  <span className="text-[9px] text-[var(--accent)] flex items-center gap-1 shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                    LIVE
+                  </span>
+                )}
+              </div>
+              <div className="relative w-full aspect-[16/10] overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Description */}
@@ -65,6 +98,19 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
           >
             {project.description}
           </p>
+
+          {/* Features highlight */}
+          {project.features && project.features.length > 0 && (
+            <div className="mt-4 space-y-1.5 border-t border-border/50 pt-3">
+              {project.features.slice(0, 3).map((feat, fi) => (
+                <div key={fi} className="flex items-start gap-2 text-xs text-muted font-mono">
+                  <span className="text-[var(--accent)]">›</span>
+                  <span>{feat}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="flex flex-wrap gap-2 mt-4">
             {project.technologies.map((tech) => (
               <span
@@ -81,26 +127,27 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
         {/* CTA */}
         <div className="col-span-11 col-start-2 md:col-span-2 md:col-start-auto flex flex-col items-start md:items-end gap-2 pt-1">
           <span className="label-mono" style={{ fontSize: "10px" }}>2026</span>
-          {project.githubUrl && project.githubUrl !== "#" && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-mono transition-colors"
-              style={{ color: isHovered ? "var(--accent)" : "var(--muted)", fontSize: "10px" }}
-            >
-              GitHub ↗
-            </a>
-          )}
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="label-mono transition-colors"
+              className="btn-outline text-xs px-3 py-1.5 mt-2"
+              style={{ fontSize: "10px" }}
+              data-cursor="OPEN"
+            >
+              Visit Live ↗
+            </a>
+          )}
+          {project.githubUrl && project.githubUrl !== "#" && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label-mono transition-colors mt-1"
               style={{ color: isHovered ? "var(--accent)" : "var(--muted)", fontSize: "10px" }}
             >
-              Live ↗
+              GitHub ↗
             </a>
           )}
         </div>

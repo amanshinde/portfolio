@@ -9,12 +9,51 @@ export interface Project {
   terminalVisual: string[];
   githubUrl?: string;
   liveUrl?: string;
+  image?: string;
 }
 
 export const projects: Project[] = [
   {
-    id: "spokenhands",
+    id: "hindustan-sales-corporation",
     number: "01",
+    title: "Hindustan Sales Corporation",
+    subtitle: "END-TO-END COMMERCIAL MERN PLATFORM",
+    description:
+      "A production commercial web platform engineered end-to-end with the MERN stack for industrial hardware, pumpsets, and plumbing solutions. Features responsive catalogs, quotation workflows, and optimized client performance.",
+    technologies: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "REST APIs",
+    ],
+    features: [
+      "Full-stack product showcase & catalog architecture",
+      "Customer enquiry & quote generation workflow",
+      "High-performance responsive UI/UX",
+      "Dynamic category filtering & industrial equipment specifications",
+    ],
+    terminalVisual: [
+      "aman@dev:~/hsc-platform$ npm run build",
+      "",
+      "  ✓ MERN Stack Commercial Platform: ACTIVE",
+      "  ✓ Live at: https://hindustansalescorporation.in/",
+      "  ┌─────────────────────────────────────────┐",
+      "  │  STATUS:  ● Production Ready (Online)    │",
+      "  │  STACK:   React · Node · Express · Mongo │",
+      "  │  DOMAIN:  hindustansalescorporation.in   │",
+      "  └─────────────────────────────────────────┘",
+      "",
+      "aman@dev:~/hsc-platform$ _",
+    ],
+    githubUrl: undefined,
+    liveUrl: "https://hindustansalescorporation.in/",
+    image: "/projects/hindustan-sales.png",
+  },
+  {
+    id: "spokenhands",
+    number: "02",
     title: "SpokenHands",
     subtitle: "SIGN LANGUAGE RECOGNITION",
     description:
@@ -53,7 +92,7 @@ export const projects: Project[] = [
   },
   {
     id: "sentinel-ai",
-    number: "02",
+    number: "03",
     title: "Sentinel AI",
     subtitle: "FACE RECOGNITION FOR CCTV",
     description:
@@ -91,40 +130,6 @@ export const projects: Project[] = [
       "  ALERTS:   0 pending",
       "",
       "aman@dev:~/sentinel$ _",
-    ],
-    githubUrl: "#",
-    liveUrl: undefined,
-  },
-  {
-    id: "school-erp",
-    number: "03",
-    title: "School ERP",
-    subtitle: "MERN EDUCATION MANAGEMENT PLATFORM",
-    description:
-      "A MERN-stack School ERP platform developed for managing student information, attendance, leave management, and administrative workflows.",
-    technologies: ["React", "Node.js", "Express.js", "MongoDB"],
-    features: [
-      "Student information management",
-      "Attendance tracking system",
-      "Leave management workflows",
-      "Administrative dashboards",
-    ],
-    terminalVisual: [
-      "aman@dev:~/school-erp$ npm start",
-      "",
-      "  ┌──────────────────────────────────┐",
-      "  │  SCHOOL ERP v1.0                 │",
-      "  ├──────────────────────────────────┤",
-      "  │  ├─ /students     [214 records]  │",
-      "  │  ├─ /attendance   [active]       │",
-      "  │  ├─ /leave        [3 pending]    │",
-      "  │  └─ /dashboard    [admin]        │",
-      "  ├──────────────────────────────────┤",
-      "  │  DB: ● Connected                 │",
-      "  │  API: ● Running on :5000         │",
-      "  └──────────────────────────────────┘",
-      "",
-      "aman@dev:~/school-erp$ _",
     ],
     githubUrl: "#",
     liveUrl: undefined,
