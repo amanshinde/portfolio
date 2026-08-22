@@ -1,111 +1,104 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./Icons";
-import SectionHeader from "./SectionHeader";
 
-const contactLinks = [
-  {
-    label: "EMAIL",
-    value: "shindeaman31@gmail.com",
-    href: "mailto:shindeaman31@gmail.com",
-    icon: Mail,
-    accent: "text-yellow",
-  },
-  {
-    label: "LINKEDIN",
-    value: "linkedin.com/in/aman",
-    href: "https://linkedin.com/in/aman",
-    icon: LinkedinIcon,
-    accent: "text-cyan",
-  },
-  {
-    label: "GITHUB",
-    value: "github.com/aman",
-    href: "https://github.com/aman",
-    icon: GithubIcon,
-    accent: "text-green",
-  },
+const socialLinks = [
+  { label: "LinkedIn", url: "https://linkedin.com/in/aman-shinde", arrow: "↗" },
+  { label: "GitHub", url: "https://github.com/aman-shinde", arrow: "↗" },
+  { label: "Email", url: "mailto:shindeaman31@gmail.com", arrow: "→" },
 ];
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-10 bg-surface/20">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number="07" label="CONTACT" />
-
+    <section id="contact" className="section">
+      <div className="container-full">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="flex items-center gap-4 mb-16"
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="pixel-border bg-surface shadow-2xl overflow-hidden mt-8"
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
         >
-          {/* Terminal Window Header */}
-          <div className="bg-surface-light border-b border-border px-4 py-2 flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-border" />
-            <div className="w-3 h-3 rounded-full bg-border" />
-            <div className="w-3 h-3 rounded-full bg-border" />
-            <div className="text-text-muted text-[10px] font-mono ml-4 select-none">
-              ./contact
-            </div>
-          </div>
-
-          <div className="p-6 md:p-10 font-mono text-sm md:text-base leading-relaxed">
-            <div className="mb-8">
-              <span className="text-yellow">aman@portfolio</span>
-              <span className="text-text-secondary">:~</span>
-              <span className="text-text-primary">$</span> ./contact.sh
-            </div>
-
-            <div className="space-y-6 mb-12">
-              <p className="text-text-secondary">
-                <span className="text-cyan">{"["}</span> INIT <span className="text-cyan">{"]"}</span> Connection established.
-              </p>
-              <h2 className="text-3xl md:text-4xl text-text-primary tracking-tight font-bold">
-                LET&apos;S BUILD <span className="text-yellow">SOMETHING.</span>
-              </h2>
-              <p className="text-text-secondary max-w-lg">
-                I&apos;m interested in software development, frontend engineering,
-                full-stack applications, and technology-driven products. Feel free
-                to reach out.
-              </p>
-            </div>
-
-            <div className="space-y-4 max-w-lg border-l-2 border-border pl-4">
-              {contactLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  className="group flex items-center justify-between p-3 border border-transparent hover:border-border hover:bg-surface-light transition-all"
-                >
-                  <div className="flex items-center gap-4">
-                    <link.icon
-                      size={18}
-                      className={`${link.accent} group-hover:scale-110 transition-transform`}
-                    />
-                    <span className="text-xs font-mono text-text-muted tracking-widest group-hover:text-text-primary transition-colors">
-                      {link.label}
-                    </span>
-                  </div>
-                  <span className="text-xs md:text-sm font-mono text-text-secondary group-hover:text-yellow transition-colors">
-                    {link.value}
-                  </span>
-                </a>
-              ))}
-            </div>
-
-            <div className="mt-12 flex items-center gap-2">
-              <span className="text-yellow">aman@portfolio</span>
-              <span className="text-text-secondary">:~</span>
-              <span className="text-text-primary">$</span>
-              <span className="animate-blink inline-block w-2 h-4 bg-yellow align-middle ml-1"></span>
-            </div>
-          </div>
+          <span className="label-mono">06</span>
+          <span className="block flex-1 h-px" style={{ background: "var(--border)" }} />
+          <span className="label-mono">Contact</span>
         </motion.div>
+
+        {/* Large CTA */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-8">
+            <motion.h2
+              className="heading-xl"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Let&apos;s Build
+              <br />
+              <span style={{ color: "var(--muted)" }}>Something.</span>
+            </motion.h2>
+
+            <motion.p
+              className="mt-8 text-lg md:text-xl leading-relaxed max-w-lg"
+              style={{ color: "var(--muted)" }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+            >
+              Have a project, idea, or role in mind?
+              I&apos;m currently available for internships and freelance work.
+            </motion.p>
+
+            <motion.a
+              href="mailto:shindeaman31@gmail.com"
+              className="group inline-flex items-center gap-4 mt-12"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              data-cursor="EMAIL"
+            >
+              <span
+                className="font-sans font-black text-2xl md:text-3xl transition-colors duration-200 group-hover:text-[var(--accent)]"
+                style={{ letterSpacing: "-0.04em" }}
+              >
+                shindeaman31@gmail.com
+              </span>
+              <span className="text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
+            </motion.a>
+          </div>
+
+          {/* Social links */}
+          <motion.div
+            className="lg:col-span-4 flex flex-col justify-end gap-0 border-t border-l"
+            style={{ borderColor: "var(--border)" }}
+            initial={{ opacity: 0, x: 16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.25 }}
+          >
+            {socialLinks.map((link, i) => (
+              <a
+                key={link.label}
+                href={link.url}
+                target={link.url.startsWith("http") ? "_blank" : undefined}
+                rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group flex items-center justify-between px-6 py-5 border-b transition-colors duration-150 hover:bg-[var(--surface)]"
+                style={{ borderColor: "var(--border)" }}
+                data-cursor="OPEN"
+              >
+                <span className="font-sans font-bold text-base uppercase tracking-tight group-hover:text-[var(--accent)] transition-colors"
+                  style={{ letterSpacing: "-0.02em" }}>
+                  {link.label}
+                </span>
+                <span className="label-mono group-hover:text-[var(--accent)] transition-colors">{link.arrow}</span>
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

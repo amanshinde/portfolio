@@ -1,36 +1,43 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SectionHeader from "./SectionHeader";
-import ProjectCard from "./ProjectCard";
 import { projects } from "@/data/projects";
+import ProjectRow from "./ProjectRow";
 
 export default function Projects() {
   return (
-    <section id="work" className="relative py-24 md:py-10">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number="03" label="SELECTED_WORK" />
-
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
+    <section id="work" className="section">
+      <div className="container-full">
+        {/* Section header */}
+        <motion.div
+          className="flex items-center gap-4 mb-4"
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="text-text-secondary text-sm md:text-base leading-relaxed mb-12 max-w-2xl"
         >
-          Projects built across web development, computer vision, automation,
-          and intelligent systems.
-        </motion.p>
+          <span className="label-mono">03</span>
+          <span className="block flex-1 h-px" style={{ background: "var(--border)" }} />
+          <span className="label-mono">Selected Work</span>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          <h2 className="heading-lg" style={{ color: "var(--foreground)" }}>
+            Projects.
+          </h2>
+        </motion.div>
+
+        {/* Border top */}
+        <div className="border-t" style={{ borderColor: "var(--border)" }}>
           {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+            <ProjectRow key={project.id} project={project} index={i} />
           ))}
-        </div>
-
-        {/* Decorative element */}
-        <div className="mt-12 text-center font-mono text-xs text-text-muted/30" aria-hidden="true">
-          git commit -m &quot;build something meaningful&quot;
         </div>
       </div>
     </section>

@@ -1,140 +1,162 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "WORK", href: "/work" },
-  { label: "EXPERIENCE", href: "/experience" },
-  { label: "SKILLS", href: "/skills" },
-  { label: "CONTACT", href: "/contact" },
+  { label: "Work", href: "/work" },
+  { label: "Experience", href: "/experience" },
+  { label: "Skills", href: "/skills" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    const section = href.replace("/", "");
-    window.dispatchEvent(new CustomEvent("nav-click", { detail: { section } }));
-    setMobileOpen(false);
-  };
-
   return (
-    <motion.header
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#070707]/95 backdrop-blur-sm border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <nav
-        className="w-full mx-auto px-6 sm:px-8 lg:px-12 h-24 flex items-center justify-between"
-        role="navigation"
-        aria-label="Main navigation"
+    <>
+      <header
+        className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
+        style={{
+          background: scrolled ? "rgba(10,10,10,0.97)" : "transparent",
+          borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+        }}
       >
-        {/* Logo */}
-        <Link
-          href="/"
-          className="font-mono text-lg md:text-2xl text-yellow tracking-wider hover:text-yellow transition-colors terminal-glow"
-        >
-          AMAN_SHINDE
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="font-mono text-sm md:text-base tracking-widest text-text-secondary hover:text-yellow transition-colors duration-200"
-            >
-              {link.label}
+        <div className="container-full">
+          <nav
+            className="flex items-center justify-between h-[72px]"
+            role="navigation"
+            aria-label="Main navigation"
+          >
+            {/* Left: Name + Title */}
+            <Link href="/" className="group flex flex-col gap-0 leading-none" data-cursor="HOME">
+              <span
+                className="font-sans font-black text-sm tracking-tight text-foreground uppercase"
+                style={{ letterSpacing: "-0.02em" }}
+              >
+                Aman Shinde
+              </span>
+              <span className="label-mono" style={{ fontSize: "9px" }}>
+                Software Developer
+              </span>
             </Link>
-          ))}
-          <div className="flex items-center gap-3 ml-6 px-4 py-2 border border-border">
-            <span className="w-2.5 h-2.5 rounded-full bg-yellow animate-glow-pulse" />
-            <span
-              className="text-[11px] md:text-[12px] tracking-widest text-yellow"
-              style={{ fontFamily: "var(--font-pixel)" }}
-            >
-              OPEN TO WORK
-            </span>
-          </div>
-        </div>
 
-        {/* Mobile Hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 text-text-secondary hover:text-yellow transition-colors"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </nav>
+            {/* Center: Status */}
+            <div className="hidden lg:flex items-center gap-1">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+              <span className="label-mono" style={{ fontSize: "10px" }}>
+                Available for work
+              </span>
+            </div>
+
+            {/* Right: Links */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    data-cursor="OPEN"
+                    className="label-mono transition-colors duration-150"
+                    style={{
+                      color: isActive ? "var(--accent)" : "var(--muted)",
+                      fontSize: "11px",
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <a
+                href="mailto:shindeaman31@gmail.com"
+                className="btn-outline"
+                style={{ padding: "8px 16px", fontSize: "10px" }}
+                data-cursor="EMAIL"
+              >
+                Let&apos;s talk ↗
+              </a>
+            </div>
+
+            {/* Mobile: Hamburger */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              className="md:hidden flex flex-col gap-1.5 p-2"
+            >
+              <motion.span
+                animate={{ rotate: mobileOpen ? 45 : 0, y: mobileOpen ? 8 : 0 }}
+                className="block w-6 h-px bg-foreground"
+              />
+              <motion.span
+                animate={{ opacity: mobileOpen ? 0 : 1 }}
+                className="block w-6 h-px bg-foreground"
+              />
+              <motion.span
+                animate={{ rotate: mobileOpen ? -45 : 0, y: mobileOpen ? -8 : 0 }}
+                className="block w-6 h-px bg-foreground"
+              />
+            </button>
+          </nav>
+        </div>
+      </header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden fixed inset-0 top-16 bg-[#070707]/98 backdrop-blur-md z-40"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 flex flex-col"
+            style={{ background: "var(--background)", paddingTop: "72px" }}
           >
-            <div className="flex flex-col items-center justify-center h-full gap-8 -mt-16">
+            <div className="container-full flex flex-col gap-0 mt-8 border-t"
+              style={{ borderColor: "var(--border)" }}>
               {navLinks.map((link, i) => (
-                <motion.a
+                <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  className="font-mono text-lg tracking-widest text-text-secondary hover:text-green transition-colors"
+                  className="flex items-center justify-between py-6 border-b"
+                  style={{ borderColor: "var(--border)" }}
                 >
-                  {link.label}
-                </motion.a>
+                  <span className="font-sans font-black text-3xl uppercase tracking-tight" style={{ letterSpacing: "-0.04em" }}>
+                    {link.label}
+                  </span>
+                  <span className="label-mono">{String(i + 1).padStart(2, "0")}</span>
+                </Link>
               ))}
-              <div className="flex items-center gap-2 px-4 py-2 border border-border mt-4">
-                <span className="w-2 h-2 rounded-full bg-green animate-glow-pulse" />
-                <span
-                  className="text-[10px] tracking-widest text-green"
-                  style={{ fontFamily: "var(--font-pixel)" }}
-                >
-                  OPEN TO WORK
-                </span>
-              </div>
+              <a
+                href="mailto:shindeaman31@gmail.com"
+                className="mt-8 btn-primary self-start"
+              >
+                Let&apos;s talk ↗
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }

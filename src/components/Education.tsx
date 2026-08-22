@@ -1,46 +1,61 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin } from "lucide-react";
-import SectionHeader from "./SectionHeader";
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-24 md:py-10 bg-surface/30">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number="06" label="EDUCATION" />
+    <section id="education" className="section">
+      <div className="container-full">
+        {/* Section header */}
+        <motion.div
+          className="flex items-center gap-4 mb-4"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <span className="label-mono">07</span>
+          <span className="block flex-1 h-px" style={{ background: "var(--border)" }} />
+          <span className="label-mono">Education</span>
+        </motion.div>
+
+        <motion.h2
+          className="heading-lg mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          Academic Background.
+        </motion.h2>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-t"
+          style={{ borderColor: "var(--border)" }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="max-w-2xl"
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15 }}
         >
-          <div className="pixel-border bg-surface p-5 md:p-7">
-            <div className="flex items-start gap-4">
-              <div className="p-2 border border-green/30 bg-green/5 shrink-0 mt-1">
-                <GraduationCap size={18} className="text-green" />
-              </div>
-              <div>
-                <h3 className="font-mono text-base md:text-lg text-text-primary mb-1">
-                  Jain College of Engineering and Research
-                </h3>
-                <p className="font-mono text-xs text-green tracking-wider mb-3">
-                  Bachelor of Engineering — Computer Science and Engineering
-                </p>
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-5 text-xs font-mono text-text-muted">
-                  <span className="inline-flex items-center gap-1.5">
-                    <Calendar size={11} />
-                    Dec. 2022 — May 2026
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <MapPin size={11} />
-                    Belagavi, Karnataka
-                  </span>
-                </div>
-              </div>
-            </div>
+          {/* Date */}
+          <div className="lg:col-span-2 py-8 lg:pr-8 border-b" style={{ borderColor: "var(--border)" }}>
+            <span className="label-mono" style={{ fontSize: "10px" }}>Dec. 2022 — May 2026</span>
+          </div>
+
+          {/* Content */}
+          <div className="lg:col-span-10 py-8 lg:pl-12 border-b" style={{ borderColor: "var(--border)" }}>
+            <h3
+              className="font-sans font-black text-xl md:text-2xl uppercase"
+              style={{ letterSpacing: "-0.03em" }}
+            >
+              Jain College of Engineering and Research
+            </h3>
+            <p className="label-mono mt-2" style={{ color: "var(--accent)", fontSize: "10px" }}>
+              Bachelor of Engineering — Computer Science and Engineering
+            </p>
+            <p className="label-mono mt-1" style={{ fontSize: "10px" }}>
+              Belagavi, Karnataka
+            </p>
           </div>
         </motion.div>
       </div>

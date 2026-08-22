@@ -1,66 +1,79 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, BookOpen } from "lucide-react";
-import SectionHeader from "./SectionHeader";
 
 export default function Publication() {
   return (
-    <section id="publication" className="relative py-24 md:py-10">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader number="05" label="RESEARCH" />
+    <section id="publication" className="section">
+      <div className="container-full">
+        {/* Section header */}
+        <motion.div
+          className="flex items-center gap-4 mb-4"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <span className="label-mono">06</span>
+          <span className="block flex-1 h-px" style={{ background: "var(--border)" }} />
+          <span className="label-mono">Research</span>
+        </motion.div>
+
+        <motion.h2
+          className="heading-lg mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          Published Work.
+        </motion.h2>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-t"
+          style={{ borderColor: "var(--border)" }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl"
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15 }}
         >
-          <div className="pixel-border bg-surface p-6 md:p-8 group hover:border-border-hover transition-colors duration-300">
-            {/* Research icon and venue */}
-            <div className="flex items-center gap-3 mb-6">
-              <BookOpen size={16} className="text-purple" />
-              <span className="font-mono text-xs text-purple tracking-wider">
-                IEEE INCET 2025
-              </span>
-              <span className="text-text-muted text-xs font-mono">•</span>
-              <span className="font-mono text-xs text-text-muted">
-                September 2025
-              </span>
-            </div>
+          {/* Label */}
+          <div className="lg:col-span-2 py-8 lg:pr-8 border-b" style={{ borderColor: "var(--border)" }}>
+            <span className="label-mono" style={{ color: "var(--accent)" }}>IEEE INCET 2025</span>
+            <p className="label-mono mt-1" style={{ fontSize: "10px" }}>Sept. 2025</p>
+          </div>
 
-            {/* Title */}
-            <h3 className="font-mono text-lg md:text-xl text-text-primary mb-2 leading-snug">
+          {/* Content */}
+          <div className="lg:col-span-10 py-8 lg:pl-12 border-b" style={{ borderColor: "var(--border)" }}>
+            <h3
+              className="font-sans font-black text-xl md:text-2xl uppercase"
+              style={{ letterSpacing: "-0.03em" }}
+            >
               Smart Vision for Silent Voices
             </h3>
-            <p className="text-text-secondary text-sm md:text-base mb-6">
+            <p className="label-mono mt-2 mb-6">
               A Review of Sign Language Recognition Technologies
             </p>
-
-            {/* DOI */}
-            <div className="flex items-center gap-2 mb-6 p-3 bg-surface-light border border-border font-mono text-xs">
-              <span className="text-text-muted">DOI:</span>
+            <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--muted)", maxWidth: "48rem" }}>
+              Published at the International Conference on Emerging Trends 2025.
+              Reviews state-of-the-art approaches to Indian Sign Language recognition,
+              covering computer vision, deep learning, and real-time gesture systems.
+            </p>
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="label-mono" style={{ fontSize: "10px" }}>
+                DOI: 10.1109/INCET64471.2025.11139951
+              </span>
               <a
                 href="https://doi.org/10.1109/INCET64471.2025.11139951"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan hover:text-green transition-colors break-all"
+                className="btn-outline"
+                style={{ padding: "8px 16px", fontSize: "10px" }}
+                data-cursor="OPEN"
               >
-                10.1109/INCET64471.2025.11139951
+                View Publication ↗
               </a>
             </div>
-
-            {/* CTA */}
-            <a
-              href="https://doi.org/10.1109/INCET64471.2025.11139951"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-purple/40 text-purple font-mono text-xs tracking-wider hover:bg-purple/10 transition-colors"
-            >
-              <ExternalLink size={13} />
-              VIEW PUBLICATION
-            </a>
           </div>
         </motion.div>
       </div>

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Inter, Press_Start_2P } from "next/font/google";
+import { JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import PixelGrid from "@/components/PixelGrid";
-import CRTEffectWrapper from "@/components/CRTEffectWrapper";
+import CustomCursor from "@/components/CustomCursor";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
@@ -18,17 +17,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const pressStart2P = Press_Start_2P({
-  variable: "--font-pixel",
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Aman Shinde | Full Stack Developer",
+  title: "Aman Shinde | Full Stack Developer & Designer",
   description:
-    "Portfolio of Aman Shinde, a Full Stack Developer and Computer Science Engineer specializing in React, Node.js, Python, MongoDB, and computer vision.",
+    "Aman Shinde — Full Stack Developer and Computer Science Engineer. I build interfaces, backend systems and AI-powered applications.",
   keywords: [
     "Aman Shinde",
     "Full Stack Developer",
@@ -38,11 +30,12 @@ export const metadata: Metadata = {
     "Computer Vision",
     "MERN",
     "Portfolio",
+    "UI/UX",
   ],
   openGraph: {
     title: "Aman Shinde | Full Stack Developer",
     description:
-      "Portfolio of Aman Shinde — Full Stack Developer & Computer Science Engineer.",
+      "Full Stack Developer — React, Node.js, Python, Computer Vision.",
     type: "website",
     locale: "en_US",
   },
@@ -57,13 +50,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${jetbrainsMono.variable} ${inter.variable} ${pressStart2P.variable} h-full antialiased`}
+      className={`${jetbrainsMono.variable} ${inter.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
+        <CustomCursor />
         <Navbar />
-        <PixelGrid />
-        <CRTEffectWrapper />
-        <main className="relative z-10 flex-1">
+        <main className="flex-1">
           {children}
         </main>
         <Footer />

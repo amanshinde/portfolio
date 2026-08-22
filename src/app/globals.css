@@ -2,78 +2,32 @@
 
 /* ── Design Tokens ─────────────────────────────────────── */
 :root {
-  --bg-primary: #070707;
-  --bg-surface: #101010;
-  --bg-surface-light: #171717;
-  --border-color: #2a2a2a;
-  --border-hover: #3a3a3a;
+  --background: #0A0A0A;
+  --foreground: #F3F2ED;
+  --muted: #B8B8B2;
+  --border: #262626;
+  --accent: #DFFF00;
+  --surface: #111111;
 
-  --yellow: #f4e638;
-  --yellow-dim: #f4e63833;
-  --green: #35e879;
-  --green-dim: #35e87933;
-  --cyan: #38c7d9;
-  --cyan-dim: #38c7d922;
-  --purple: #a78bfa;
-  --purple-dim: #a78bfa22;
-
-  --text-primary: #f3f1e8;
-  --text-secondary: #a1a1aa;
-  --text-muted: #666666;
-
-  --font-pixel: "Press Start 2P", monospace;
-  --font-mono: "JetBrains Mono", monospace;
-  --font-sans: "Inter", sans-serif;
-
-  --scanline-opacity: 0.03;
-  --grid-opacity: 0.04;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
 }
 
 /* ── Tailwind v4 Theme ──────────────────────────────────── */
 @theme inline {
-  --color-background: var(--bg-primary);
-  --color-foreground: var(--text-primary);
-  --color-surface: var(--bg-surface);
-  --color-surface-light: var(--bg-surface-light);
-  --color-border: var(--border-color);
-  --color-border-hover: var(--border-hover);
-  --color-yellow: var(--yellow);
-  --color-yellow-dim: var(--yellow-dim);
-  --color-green: var(--green);
-  --color-green-dim: var(--green-dim);
-  --color-cyan: var(--cyan);
-  --color-cyan-dim: var(--cyan-dim);
-  --color-purple: var(--purple);
-  --color-purple-dim: var(--purple-dim);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
+  --color-background: #0A0A0A;
+  --color-foreground: #F3F2ED;
+  --color-muted: #B8B8B2;
+  --color-border: #262626;
+  --color-accent: #DFFF00;
+  --color-surface: #111111;
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
-  --font-pixel: var(--font-pixel);
 
-  --animate-blink: blink 1s step-end infinite;
-  --animate-scanline: scanline 8s linear infinite;
-  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
-  --animate-typing: typing 3.5s steps(40, end);
-  --animate-fade-in: fade-in 0.5s ease-out forwards;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
   --animate-slide-up: slide-up 0.5s ease-out forwards;
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-  }
+  --animate-blink: blink 1s step-end infinite;
 
   @keyframes fade-in {
     from { opacity: 0; }
@@ -81,205 +35,185 @@
   }
 
   @keyframes slide-up {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 }
 
-/* ── Base Styles ────────────────────────────────────────── */
-* {
+/* ── Base ───────────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 72px;
+  cursor: none;
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
+/* hide default cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+  *, a, button { cursor: none !important; }
+}
+
+/* ── Selection ──────────────────────────────────────────── */
 ::selection {
-  background: var(--green);
-  color: var(--bg-primary);
+  background: var(--accent);
+  color: var(--background);
 }
 
-/* ── Custom Scrollbar ───────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 1px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Typography ─────────────────────────────────────────── */
+.heading-xl {
+  font-family: var(--font-sans);
+  font-size: clamp(4rem, 11vw, 11rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  text-transform: uppercase;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+.heading-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 0;
+.heading-md {
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--green);
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
 }
 
-/* ── CRT Scanlines (global overlay) ─────────────────────── */
-.crt-overlay {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, var(--scanline-opacity)) 2px,
-    rgba(0, 0, 0, var(--scanline-opacity)) 4px
-  );
-  mix-blend-mode: multiply;
+/* ── Brutalist Utilities ────────────────────────────────── */
+.b-border {
+  border: 1px solid var(--border);
 }
 
-.crt-overlay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 60%,
-    rgba(0, 0, 0, 0.15) 100%
-  );
+.b-border-top {
+  border-top: 1px solid var(--border);
 }
 
-/* ── Pixel Grid Background ──────────────────────────────── */
-.pixel-grid {
-  background-image: radial-gradient(
-    circle,
-    rgba(57, 255, 136, var(--grid-opacity)) 1px,
-    transparent 1px
-  );
-  background-size: 24px 24px;
+.b-border-bottom {
+  border-bottom: 1px solid var(--border);
 }
 
-/* ── Pixel Border ───────────────────────────────────────── */
-.pixel-border {
-  position: relative;
-  border: 1px solid var(--border-color);
-}
-
-.pixel-border::before,
-.pixel-border::after {
-  content: "";
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-}
-
-.pixel-border::before {
-  top: -2px;
-  left: -2px;
-}
-
-.pixel-border::after {
-  bottom: -2px;
-  right: -2px;
-}
-
-/* ── Pixel Buttons ───────────────────────────────────────── */
-.pixel-btn {
+.btn-primary {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-pixel);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  padding: 16px 24px;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--foreground);
+  color: var(--background);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  transition: transform 0.1s, box-shadow 0.1s, border-color 0.2s, color 0.2s;
-  cursor: pointer;
+  border: 1px solid var(--foreground);
+  border-radius: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  text-decoration: none;
 }
 
-.pixel-btn:active {
-  transform: translate(2px, 2px);
+.btn-primary:hover {
+  background: var(--accent);
+  color: var(--background);
+  border-color: var(--accent);
 }
 
-.pixel-btn-primary {
-  background-color: var(--yellow);
-  color: var(--bg-primary);
-  border: 2px solid var(--yellow);
-  box-shadow: 4px 4px 0px 0px rgba(244, 230, 56, 0.4);
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  text-decoration: none;
 }
 
-.pixel-btn-primary:hover {
-  box-shadow: 6px 6px 0px 0px rgba(244, 230, 56, 0.6);
+.btn-outline:hover {
+  border-color: var(--foreground);
+  color: var(--foreground);
 }
 
-.pixel-btn-primary:active {
-  box-shadow: 0px 0px 0px 0px rgba(244, 230, 56, 0.6);
+/* ── Layout ─────────────────────────────────────────────── */
+.container-full {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.pixel-btn-secondary {
-  background-color: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--border-color);
-  box-shadow: 4px 4px 0px 0px rgba(243, 241, 232, 0.1);
+@media (max-width: 640px) {
+  .container-full { padding: 0 16px; }
 }
 
-.pixel-btn-secondary:hover {
-  border-color: var(--yellow);
-  color: var(--yellow);
-  box-shadow: 6px 6px 0px 0px rgba(244, 230, 56, 0.3);
+/* ── Section ────────────────────────────────────────────── */
+.section {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
 }
 
-.pixel-btn-secondary:active {
-  box-shadow: 0px 0px 0px 0px rgba(244, 230, 56, 0.3);
+@media (max-width: 768px) {
+  .section { padding: 80px 0; }
 }
 
-.pixel-border-green {
-  border: 1px solid var(--green);
-  box-shadow:
-    0 0 10px var(--green-dim),
-    inset 0 0 10px var(--green-dim);
-}
-
-/* ── Terminal Glow ──────────────────────────────────────── */
-.terminal-glow {
-  text-shadow: 0 0 8px var(--green-dim);
-}
-
-.text-glow-green {
-  text-shadow: 0 0 10px var(--green-dim), 0 0 20px var(--green-dim);
-}
-
-.text-glow-cyan {
-  text-shadow: 0 0 10px var(--cyan-dim), 0 0 20px var(--cyan-dim);
-}
-
-/* ── Focus States ───────────────────────────────────────── */
+/* ── Focus ──────────────────────────────────────────────── */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
 /* ── Reduced Motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .crt-overlay {
-    display: none;
   }
 }
