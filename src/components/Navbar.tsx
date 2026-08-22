@@ -48,14 +48,14 @@ export default function Navbar() {
             aria-label="Main navigation"
           >
             {/* Left: Name + Title */}
-            <Link href="/" className="group flex flex-col gap-0 leading-none" data-cursor="HOME">
+            <Link href="/" className="group flex flex-col gap-0.5 leading-none" data-cursor="HOME">
               <span
-                className="font-sans font-black text-sm tracking-tight text-foreground uppercase"
+                className="font-sans font-black text-base md:text-lg tracking-tight text-foreground uppercase"
                 style={{ letterSpacing: "-0.02em" }}
               >
                 Aman Shinde
               </span>
-              <span className="label-mono" style={{ fontSize: "9px" }}>
+              <span className="label-mono" style={{ fontSize: "10px" }}>
                 Software Developer
               </span>
             </Link>

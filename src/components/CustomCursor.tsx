@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function CustomCursor() {
+  const [mounted, setMounted] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [label, setLabel] = useState("");
@@ -14,6 +15,7 @@ export default function CustomCursor() {
   useEffect(() => {
     // Only show on devices with fine pointer (mouse)
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    setMounted(true);
 
     const move = (e: MouseEvent) => {
       pos.current = { x: e.clientX, y: e.clientY };
@@ -47,7 +49,7 @@ export default function CustomCursor() {
     };
   }, []);
 
-  if (typeof window !== "undefined" && !window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  if (!mounted) {
     return null;
   }
 

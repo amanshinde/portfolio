@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
-import { motion, useSpring, useTransform, useMotionValue } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
 interface ProjectRowProps {
@@ -13,28 +13,11 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springX = useSpring(mouseX, { stiffness: 200, damping: 30 });
-  const springY = useSpring(mouseY, { stiffness: 200, damping: 30 });
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const rect = rowRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      mouseX.set(e.clientX - rect.left - 160);
-      mouseY.set(e.clientY - rect.top - 100);
-    },
-    [mouseX, mouseY]
-  );
-
   return (
     <motion.div
       ref={rowRef}
       className="relative group border-b overflow-hidden"
       style={{ borderColor: "var(--border)" }}
-      onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ opacity: 0, y: 20 }}
@@ -122,36 +105,6 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
           )}
         </div>
       </div>
-
-      {/* Floating preview — follows cursor */}
-      <motion.div
-        className="pointer-events-none absolute z-20 hidden md:flex items-center justify-center"
-        style={{
-          width: 320,
-          height: 200,
-          x: springX,
-          y: springY,
-          top: 0,
-          left: 0,
-          opacity: isHovered ? 1 : 0,
-          transition: "opacity 0.2s",
-          background: "var(--surface)",
-          border: "1px solid var(--border)",
-        }}
-      >
-        <div className="p-4 w-full h-full overflow-hidden">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full" style={{ background: "var(--accent)" }} />
-            <span className="label-mono" style={{ fontSize: "9px" }}>preview</span>
-          </div>
-          <pre
-            className="font-mono text-[9px] leading-relaxed overflow-hidden"
-            style={{ color: "var(--muted)", whiteSpace: "pre-wrap" }}
-          >
-            {project.terminalVisual?.slice(0, 8).join("\n")}
-          </pre>
-        </div>
-      </motion.div>
     </motion.div>
   );
 }

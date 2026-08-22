@@ -21,7 +21,7 @@ export default function About() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0 }}
         >
-          <span className="label-mono">02</span>
+          <span className="label-mono">01</span>
           <span className="block flex-1 h-px" style={{ background: "var(--border)" }} />
           <span className="label-mono">About</span>
         </motion.div>
@@ -60,10 +60,10 @@ export default function About() {
               Consultancy developing Python-based systems.
             </p>
 
-            <div className="mt-12 flex flex-wrap gap-6">
+            <div className="mt-24 md:mt-32 flex flex-wrap gap-6">
               <a
-                href="/resume.pdf"
-                download
+                href="/resume1.pdf"
+                download="Aman_Shinde_Resume.pdf"
                 className="btn-outline"
                 data-cursor="OPEN"
               >
@@ -80,12 +80,12 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <p className="label-mono mb-8">Technical Interests</p>
+            <p className="label-mono text-xs md:text-sm mb-8 tracking-wider" style={{ color: "var(--accent)" }}>Technical Interests</p>
             <div className="flex flex-col">
               {capabilities.map((cap, i) => (
                 <motion.div
                   key={cap.number}
-                  className="group flex items-start gap-6 py-5 border-b transition-colors duration-200"
+                  className="group flex items-start gap-6 py-6 md:py-7 border-b transition-colors duration-200"
                   style={{ borderColor: "var(--border)" }}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -93,17 +93,17 @@ export default function About() {
                   transition={{ duration: 0.35, delay: 0.25 + i * 0.07 }}
                   whileHover={{ x: 4 }}
                 >
-                  <span className="label-mono pt-0.5">{cap.number}</span>
+                  <span className="label-mono pt-1 text-xs md:text-sm">{cap.number}</span>
                   <div className="flex-1">
                     <div
-                      className="font-sans font-bold uppercase tracking-tight text-base group-hover:text-[var(--accent)] transition-colors"
+                      className="font-sans font-black uppercase tracking-tight text-lg md:text-xl group-hover:text-[var(--accent)] transition-colors"
                       style={{ letterSpacing: "-0.02em" }}
                     >
                       {cap.label}
                     </div>
-                    <div className="label-mono mt-1" style={{ fontSize: "10px" }}>{cap.detail}</div>
+                    <div className="label-mono mt-1.5" style={{ fontSize: "11px" }}>{cap.detail}</div>
                   </div>
-                  <span className="label-mono opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  <span className="label-mono text-base opacity-0 group-hover:opacity-100 transition-opacity pt-1">→</span>
                 </motion.div>
               ))}
             </div>

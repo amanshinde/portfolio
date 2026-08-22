@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${jetbrainsMono.variable} ${inter.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-background text-foreground antialiased">
         <CustomCursor />
         <Navbar />
         <main className="flex-1">
