@@ -18,7 +18,11 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
     <motion.div
       ref={rowRef}
       className="relative group border-b overflow-hidden"
-      style={{ borderColor: "var(--border)" }}
+      style={{
+        borderColor: "var(--border)",
+        paddingTop: "90px",
+        paddingBottom: "90px",
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ opacity: 0, y: 20 }}
@@ -35,37 +39,37 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
         style={{ background: "var(--surface)" }}
       />
 
-      {/* Row content */}
-      <div className="relative z-10 grid grid-cols-12 gap-4 items-start px-0 py-8 md:py-10">
-        {/* Number */}
-        <div className="col-span-1 flex items-start pt-1">
-          <span
-            className="label-mono"
-            style={{ color: isHovered ? "var(--accent)" : "var(--border)", fontSize: "10px", transition: "color 0.2s" }}
-          >
-            {project.number}
-          </span>
-        </div>
+      {/* Row content - Left flush with page heading */}
+      <div className="relative z-10 grid grid-cols-12 gap-8 lg:gap-16 items-start px-0">
+        {/* Left Column: Number, Title, Subtitle, Preview */}
+        <div className="col-span-12 md:col-span-6">
+          <div className="flex items-center gap-3 mb-3">
+            <span
+              className="label-mono font-bold"
+              style={{ color: isHovered ? "var(--accent)" : "var(--border)", fontSize: "11px", transition: "color 0.2s" }}
+            >
+              {project.number}
+            </span>
+            <span className="block h-px w-6" style={{ background: "var(--border)" }} />
+            <span className="label-mono" style={{ fontSize: "10px" }}>{project.subtitle}</span>
+          </div>
 
-        {/* Title + stack */}
-        <div className="col-span-11 md:col-span-5">
           <h3
             className="heading-md transition-colors duration-200"
             style={{ color: isHovered ? "var(--accent)" : "var(--foreground)" }}
           >
             {project.title}
           </h3>
-          <p className="label-mono mt-2">{project.subtitle}</p>
 
-          {/* Project Screenshot Preview if available */}
+          {/* Project Screenshot Preview */}
           {project.image && (
             <div className="mt-6 border border-border overflow-hidden bg-[#0d0d0d] group-hover:border-[var(--accent)]/40 transition-colors duration-300">
-              <div className="flex items-center justify-between px-3 py-2 border-b border-border bg-surface text-[10px] font-mono">
+              <div className="flex items-center justify-between px-3 py-1.5 border-b border-border bg-surface text-[10px] font-mono">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-[#333]" />
                   <span className="w-2 h-2 rounded-full bg-[#333]" />
                   <span className="w-2 h-2 rounded-full bg-[#333]" />
-                  <span className="ml-2 text-muted truncate max-w-[180px] sm:max-w-[260px]">
+                  <span className="ml-2 text-muted truncate max-w-[180px] sm:max-w-[240px]">
                     {project.liveUrl || project.title}
                   </span>
                 </div>
@@ -76,79 +80,83 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
                   </span>
                 )}
               </div>
-              <div className="relative w-full aspect-[16/10] overflow-hidden">
+              <div className="relative w-full">
                 <Image
                   src={project.image}
                   alt={project.title}
-                  fill
+                  width={1536}
+                  height={730}
                   priority={index === 0}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 600px"
+                  className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.01]"
                 />
               </div>
             </div>
           )}
         </div>
 
-        {/* Description */}
-        <div className="col-span-11 col-start-2 md:col-span-4 md:col-start-auto">
+        {/* Right Column: Description, Features, Tech Stack, CTA */}
+        <div className="col-span-12 md:col-span-6 md:self-center flex flex-col gap-6">
+          {/* Paragraph */}
           <p
-            className="text-sm leading-relaxed"
-            style={{ color: "var(--muted)" }}
+            className="text-base md:text-[17px] leading-relaxed font-normal"
+            style={{ color: "var(--foreground)", opacity: 0.9 }}
           >
             {project.description}
           </p>
 
-          {/* Features highlight */}
+          {/* Features highlight with clean gap between each item */}
           {project.features && project.features.length > 0 && (
-            <div className="mt-4 space-y-1.5 border-t border-border/50 pt-3">
+            <div className="border-t border-border/50 pt-4 flex flex-col gap-2.5">
               {project.features.slice(0, 3).map((feat, fi) => (
-                <div key={fi} className="flex items-start gap-2 text-xs text-muted font-mono">
-                  <span className="text-[var(--accent)]">›</span>
+                <div key={fi} className="flex items-start gap-2.5 text-xs md:text-sm text-muted font-mono leading-relaxed">
+                  <span className="text-[var(--accent)] text-sm shrink-0">›</span>
                   <span>{feat}</span>
                 </div>
               ))}
             </div>
           )}
 
-          <div className="flex flex-wrap gap-2 mt-4">
+          {/* Tech stack */}
+          <div className="flex flex-wrap gap-2.5">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="label-mono border px-2 py-1"
-                style={{ borderColor: "var(--border)", fontSize: "9px" }}
+                className="label-mono border px-3 py-1.5 font-medium tracking-normal text-xs transition-colors"
+                style={{ borderColor: "var(--border)", fontSize: "11px" }}
               >
                 {tech}
               </span>
             ))}
           </div>
-        </div>
 
-        {/* CTA */}
-        <div className="col-span-11 col-start-2 md:col-span-2 md:col-start-auto flex flex-col items-start md:items-end gap-2 pt-1">
-          <span className="label-mono" style={{ fontSize: "10px" }}>2026</span>
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline text-xs px-3 py-1.5 mt-2"
-              style={{ fontSize: "10px" }}
-              data-cursor="OPEN"
-            >
-              Visit Live ↗
-            </a>
-          )}
-          {project.githubUrl && project.githubUrl !== "#" && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-mono transition-colors mt-1"
-              style={{ color: isHovered ? "var(--accent)" : "var(--muted)", fontSize: "10px" }}
-            >
-              GitHub ↗
-            </a>
+          {/* Action Links */}
+          {(project.liveUrl || (project.githubUrl && project.githubUrl !== "#")) && (
+            <div className="flex items-center gap-4 pt-2 border-t border-border/50">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline text-xs px-4 py-2"
+                  style={{ fontSize: "10px" }}
+                  data-cursor="OPEN"
+                >
+                  Visit Live ↗
+                </a>
+              )}
+              {project.githubUrl && project.githubUrl !== "#" && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-mono transition-colors hover:text-[var(--accent)]"
+                  style={{ color: isHovered ? "var(--accent)" : "var(--muted)", fontSize: "11px" }}
+                >
+                  GitHub Repository ↗
+                </a>
+              )}
+            </div>
           )}
         </div>
       </div>

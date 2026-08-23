@@ -50,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${jetbrainsMono.variable} ${inter.variable} h-full`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-background text-foreground antialiased">

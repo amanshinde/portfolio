@@ -6,23 +6,23 @@ import ProjectRow from "./ProjectRow";
 
 export default function Projects() {
   return (
-    <section id="work" className="section">
+    <section id="work" className="pt-6 md:pt-10 pb-20">
       <div className="container-full">
         {/* Section header */}
         <motion.div
-          className="flex items-center gap-4 mb-4"
+          className="flex items-center gap-2 mb-4"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
         >
-          <span className="label-mono">03</span>
+          <span className="label-mono">02</span>
           <span className="block flex-1 h-px" style={{ background: "var(--border)" }} />
           <span className="label-mono">Selected Work</span>
         </motion.div>
 
         <motion.div
-          className="mb-12"
+          className="mb-8"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -33,7 +33,7 @@ export default function Projects() {
           </h2>
         </motion.div>
 
-        {/* Border top */}
+        {/* Project rows list */}
         <div className="border-t" style={{ borderColor: "var(--border)" }}>
           {projects.map((project, i) => (
             <ProjectRow key={project.id} project={project} index={i} />
