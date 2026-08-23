@@ -25,7 +25,7 @@ export const experiences: Experience[] = [
       "Developed responsive React components optimized for both desktop and mobile experiences.",
     ],
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "MERN"],
-    logo: "/companies/ssinphinite.png",
+    logo: "https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482803/ssinphinite_g4orup.png",
     companyUrl: "https://ssinphinite.com/",
   },
   {
@@ -41,7 +41,7 @@ export const experiences: Experience[] = [
       "Collaborated on code reviews and software documentation.",
     ],
     technologies: ["Python", "Git", "Testing", "Debugging"],
-    logo: "/companies/dlithe.png",
+    logo: "https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482802/dlithe_ib774q.png",
     companyUrl: "https://dlithe.com/",
   },
 ];

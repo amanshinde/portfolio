@@ -49,7 +49,7 @@ export const projects: Project[] = [
     ],
     githubUrl: undefined,
     liveUrl: "https://hindustansalescorporation.in/",
-    image: "/projects/hindustan-sales.png",
+    image: "https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482592/hindustansales_orwyhl.jpg",
   },
   {
     id: "vestora",
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     ],
     githubUrl: undefined,
     liveUrl: "https://vestora-self.vercel.app/",
-    image: "/projects/vestora-screenshot.png",
+    image: "https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482593/vestora-screenshot_cjsrlq.jpg",
   },
   {
     id: "goodsynk-erp",
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     ],
     githubUrl: undefined,
     liveUrl: "https://www.goodsynk.com/",
-    image: "/projects/goodsynk.png",
+    image: "https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482592/goodsyck_myrfki.jpg",
   },
   {
     id: "sentinel-ai",

@@ -20,7 +20,7 @@ export default function Hero() {
         style={{ borderLeft: "1px solid var(--border)" }}
       >
         <Image
-          src="/Aman.png"
+          src="https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482340/Aman_ykl6e5.png"
           alt="Aman Shinde"
           fill
           sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 28vw"
