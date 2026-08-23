@@ -86,7 +86,8 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
                   alt={project.title}
                   width={1536}
                   height={730}
-                  priority={index === 0}
+                  loading="eager"
+                  priority={index < 3}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 600px"
                   className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.01]"
                 />
