@@ -32,7 +32,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Left: Text content — constrained so it doesn't overlap the photo */}
-      <div className="flex-1 flex flex-col justify-center pt-12 md:pt-16 pb-4 md:pb-6 pr-0 lg:pr-[34vw] xl:pr-[30vw]">
+      <div className="flex-1 flex flex-col justify-center pt-12 md:pt-12 pb-4 md:pb-6 pr-0 lg:pr-[34vw] xl:pr-[30vw]">
         <div className="container-full">
           <div className="flex flex-col gap-4">
 
@@ -40,6 +40,7 @@ export default function Hero() {
             <div>
               <motion.h1
                 className="heading-xl text-foreground leading-none"
+                style={{ fontSize: "clamp(4rem, 10vw, 11rem)" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
