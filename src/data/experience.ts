@@ -7,6 +7,8 @@ export interface Experience {
   location: string;
   contributions: string[];
   technologies: string[];
+  logo?: string;
+  companyUrl?: string;
 }
 
 export const experiences: Experience[] = [
@@ -23,6 +25,8 @@ export const experiences: Experience[] = [
       "Developed responsive React components optimized for both desktop and mobile experiences.",
     ],
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "MERN"],
+    logo: "/companies/ssinphinite.png",
+    companyUrl: "https://ssinphinite.com/",
   },
   {
     id: "dlithe",
@@ -37,5 +41,7 @@ export const experiences: Experience[] = [
       "Collaborated on code reviews and software documentation.",
     ],
     technologies: ["Python", "Git", "Testing", "Debugging"],
+    logo: "/companies/dlithe.png",
+    companyUrl: "https://dlithe.com/",
   },
 ];

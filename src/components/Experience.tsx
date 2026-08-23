@@ -1,98 +1,139 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { experiences } from "@/data/experience";
 
 export default function Experience() {
   return (
-    <section id="experience" className="section">
+    <section id="experience" className="pt-6 md:pt-10 pb-20">
       <div className="container-full">
         {/* Section header */}
         <motion.div
-          className="flex items-center gap-4 mb-4"
+          className="flex items-center gap-2 mb-4"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
         >
-          <span className="label-mono">04</span>
+          <span className="label-mono">03</span>
           <span className="block flex-1 h-px" style={{ background: "var(--border)" }} />
           <span className="label-mono">Experience</span>
         </motion.div>
 
-        <motion.h2
-          className="heading-lg mb-16"
+        <motion.div
+          className="mb-8"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          Where I&apos;ve Worked.
-        </motion.h2>
+          <h2 className="heading-lg" style={{ color: "var(--foreground)" }}>
+            Where I&apos;ve Worked.
+          </h2>
+        </motion.div>
 
-        {/* Timeline list */}
-        <div className="flex flex-col">
+        {/* Experience rows list */}
+        <div className="border-t" style={{ borderColor: "var(--border)" }}>
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.id}
-              className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-0 py-12 border-t"
-              style={{ borderColor: "var(--border)" }}
-              initial={{ opacity: 0, y: 16 }}
+              className="relative group border-b overflow-hidden"
+              style={{
+                borderColor: "var(--border)",
+                paddingTop: "90px",
+                paddingBottom: "90px",
+              }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              transition={{ duration: 0.45, delay: i * 0.1 }}
             >
-              {/* Date range — 2 cols */}
-              <div className="md:col-span-2">
-                <span className="label-mono" style={{ fontSize: "10px" }}>
-                  {exp.startDate}—{exp.endDate}
-                </span>
-              </div>
-
-              {/* Company + role — 5 cols */}
-              <div className="md:col-span-5 md:px-8">
-                <h3
-                  className="font-sans font-black text-xl uppercase"
-                  style={{ letterSpacing: "-0.03em" }}
-                >
-                  {exp.company}
-                </h3>
-                <p
-                  className="label-mono mt-1"
-                  style={{ color: "var(--accent)", fontSize: "10px" }}
-                >
-                  {exp.role}
-                </p>
-                <p className="label-mono mt-1" style={{ fontSize: "10px" }}>
-                  {exp.location}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {exp.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="label-mono border px-2 py-1"
-                      style={{ borderColor: "var(--border)", fontSize: "9px" }}
-                    >
-                      {tech}
+              {/* Row content */}
+              <div className="relative z-10 grid grid-cols-12 gap-8 lg:gap-16 items-start px-0">
+                {/* Left Column: Period, Logo, Role, Company, Location, Tech Badges */}
+                <div className="col-span-12 md:col-span-6">
+                  {/* Meta row */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="label-mono font-bold" style={{ fontSize: "11px", color: "var(--accent)" }}>
+                      {exp.startDate} — {exp.endDate}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <span className="block h-px w-6" style={{ background: "var(--border)" }} />
+                    <span className="label-mono" style={{ fontSize: "10px" }}>{exp.location}</span>
+                  </div>
 
-              {/* Contributions — 5 cols */}
-              <div className="md:col-span-5">
-                <ul className="flex flex-col gap-3">
-                  {exp.contributions.map((c, j) => (
-                    <li
-                      key={j}
-                      className="flex gap-3 text-sm leading-relaxed"
-                      style={{ color: "var(--muted)" }}
-                    >
-                      <span style={{ color: "var(--border)" }}>—</span>
-                      <span>{c}</span>
-                    </li>
-                  ))}
-                </ul>
+                  {/* Company Logo Badge */}
+                  {exp.logo && (
+                    <div className="mb-6 inline-flex items-center justify-center p-3.5 md:p-4 border border-border bg-[#141414] group-hover:border-[var(--accent)]/40 transition-colors duration-300">
+                      <Image
+                        src={exp.logo}
+                        alt={exp.company}
+                        width={280}
+                        height={90}
+                        className="object-contain h-12 md:h-14 w-auto max-w-[240px] filter brightness-105"
+                      />
+                    </div>
+                  )}
+
+                  <h3
+                    className="heading-md transition-colors duration-200"
+                    style={{ color: "var(--foreground)" }}
+                  >
+                    {exp.company}
+                  </h3>
+
+                  <p
+                    className="label-mono mt-2 font-medium tracking-wider"
+                    style={{ color: "var(--muted)", fontSize: "12px" }}
+                  >
+                    {exp.role}
+                  </p>
+
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-2.5 mt-8">
+                    {exp.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="label-mono border px-3.5 py-2 font-medium tracking-normal text-xs transition-colors"
+                        style={{ borderColor: "var(--border)", fontSize: "11px" }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Company website link */}
+                  {exp.companyUrl && (
+                    <div className="mt-6">
+                      <a
+                        href={exp.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="label-mono text-xs hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5"
+                        style={{ fontSize: "11px" }}
+                        data-cursor="OPEN"
+                      >
+                        Visit Website ↗
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                {/* Right Column: Contributions list */}
+                <div className="col-span-12 md:col-span-6 md:self-center">
+                  <ul className="flex flex-col gap-4">
+                    {exp.contributions.map((c, j) => (
+                      <li
+                        key={j}
+                        className="flex items-start gap-3 text-base md:text-[17px] leading-relaxed font-normal"
+                        style={{ color: "var(--foreground)", opacity: 0.9 }}
+                      >
+                        <span className="text-[var(--accent)] text-base shrink-0 select-none">›</span>
+                        <span>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </motion.div>
           ))}
