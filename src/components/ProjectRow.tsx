@@ -20,8 +20,8 @@ export default function ProjectRow({ project, index }: ProjectRowProps) {
       className="relative group border-b overflow-hidden"
       style={{
         borderColor: "var(--border)",
-        paddingTop: "90px",
-        paddingBottom: "90px",
+        paddingTop: "64px",
+        paddingBottom: "64px",
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

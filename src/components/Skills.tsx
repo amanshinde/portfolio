@@ -106,8 +106,8 @@ export default function Skills() {
               className="border-r border-b flex flex-col gap-10 bg-[#0a0a0a]"
               style={{
                 borderColor: "var(--border)",
-                paddingTop: "70px",
-                paddingBottom: "70px",
+                paddingTop: "52px",
+                paddingBottom: "52px",
                 paddingLeft: "44px",
                 paddingRight: "28px",
               }}

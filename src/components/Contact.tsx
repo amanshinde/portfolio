@@ -52,7 +52,9 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Let&apos;s Build
+                Let&apos;s
+                <br />
+                Build
                 <br />
                 <span style={{ color: "var(--muted)" }}>Something.</span>
               </motion.h2>
