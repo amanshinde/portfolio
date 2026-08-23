@@ -130,8 +130,13 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 flex flex-col"
-            style={{ background: "var(--background)", paddingTop: "72px" }}
+            className="fixed top-0 left-0 w-full h-[100dvh] z-40 flex flex-col overscroll-contain"
+            style={{ 
+              background: "var(--background)", 
+              paddingTop: "72px",
+              WebkitTransform: "translateZ(0)",
+              willChange: "transform, opacity"
+            }}
           >
             <div className="container-full flex flex-col gap-0 mt-8 border-t"
               style={{ borderColor: "var(--border)" }}>
