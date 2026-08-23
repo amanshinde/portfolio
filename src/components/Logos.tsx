@@ -101,8 +101,7 @@ export default function Logos() {
                           alt={logo.title}
                           width={1200}
                           height={800}
-                          loading="eager"
-                          priority={index < 2}
+                          loading="lazy"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 600px"
                           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                         />

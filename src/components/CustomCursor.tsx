@@ -7,9 +7,7 @@ export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [label, setLabel] = useState("");
   const [isVisible, setIsVisible] = useState(false);
-  const pos = useRef({ x: 0, y: 0 });
   const raf = useRef<number>(0);
 
   useEffect(() => {
@@ -17,8 +15,11 @@ export default function CustomCursor() {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     setMounted(true);
 
+    // Fallback: if any touch event fires, this is a touch device — hide cursor
+    const onTouch = () => setMounted(false);
+    window.addEventListener("touchstart", onTouch, { once: true, passive: true });
+
     const move = (e: MouseEvent) => {
-      pos.current = { x: e.clientX, y: e.clientY };
       setIsVisible(true);
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
@@ -28,14 +29,7 @@ export default function CustomCursor() {
     const checkHover = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
       const interactive = el.closest("a, button, [data-cursor]");
-      if (interactive) {
-        setIsHovered(true);
-        const dataLabel = (interactive as HTMLElement).dataset.cursor;
-        setLabel(dataLabel || "");
-      } else {
-        setIsHovered(false);
-        setLabel("");
-      }
+      setIsHovered(!!interactive);
     };
 
     window.addEventListener("mousemove", move, { passive: true });
@@ -45,13 +39,12 @@ export default function CustomCursor() {
     return () => {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", checkHover);
+      window.removeEventListener("touchstart", onTouch);
       cancelAnimationFrame(raf.current);
     };
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   return (
     <div
@@ -61,26 +54,16 @@ export default function CustomCursor() {
     >
       <motion.div
         animate={{
-          width: isHovered ? (label ? 64 : 32) : 6,
-          height: isHovered ? (label ? 64 : 32) : 6,
           opacity: isVisible ? 1 : 0,
+          background: isHovered ? "var(--accent)" : "var(--foreground)",
         }}
         transition={{ duration: 0.15, ease: "easeOut" }}
-        className="relative flex items-center justify-center"
         style={{
-          background: isHovered ? "var(--accent)" : "var(--foreground)",
+          width: 6,
+          height: 6,
           mixBlendMode: isHovered ? "normal" : "difference",
         }}
-      >
-        {label && (
-          <span
-            className="text-[8px] font-mono font-bold text-black uppercase leading-tight tracking-wider text-center"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            {label}
-          </span>
-        )}
-      </motion.div>
+      />
     </div>
   );
 }

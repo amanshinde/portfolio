@@ -28,7 +28,7 @@ export default function Hero() {
             fill
             sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 28vw"
             className="object-cover object-left lg:object-left"
-            priority
+            loading="lazy"
             style={{ filter: "grayscale(10%)" }}
           />
           {/* Ghost overlay on mobile — darkens image to ~25% visibility */}
