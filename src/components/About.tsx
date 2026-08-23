@@ -30,37 +30,39 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-0">
           {/* Left: Large paragraph — 7 cols */}
           <motion.div
-            className="lg:col-span-7 lg:pr-20"
+            className="lg:col-span-7 lg:pr-20 flex flex-col justify-between"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p
-              className="font-sans text-2xl md:text-3xl xl:text-4xl leading-tight font-medium"
-              style={{ letterSpacing: "-0.02em", color: "var(--foreground)" }}
-            >
-              I&apos;m a Computer Science engineer who works across
-              development, design, and AI.
-            </p>
-            <p
-              className="mt-8 text-base md:text-lg leading-relaxed"
-              style={{ color: "var(--muted)" }}
-            >
-              I build software that prioritizes usability and clean architecture.
-              My background spans full-stack web development, computer vision,
-              and UI/UX design — I&apos;m comfortable working across the entire stack.
-            </p>
-            <p
-              className="mt-4 text-base leading-relaxed"
-              style={{ color: "var(--muted)" }}
-            >
-              Currently pursuing a B.E. in Computer Science. Previously interned
-              at SS Inphinite LLP building MERN-stack applications, and at Dlithe
-              Consultancy developing Python-based systems.
-            </p>
+            <div className="flex flex-col gap-6">
+              <p
+                className="font-sans text-2xl md:text-3xl xl:text-4xl leading-tight font-medium"
+                style={{ letterSpacing: "-0.02em", color: "var(--foreground)" }}
+              >
+                I&apos;m a Computer Science engineer who works across
+                development, design, and AI.
+              </p>
+              <p
+                className="text-base md:text-lg leading-relaxed"
+                style={{ color: "var(--muted)" }}
+              >
+                I build software that prioritizes usability and clean architecture.
+                My background spans full-stack web development, computer vision,
+                and UI/UX design — I&apos;m comfortable working across the entire stack.
+              </p>
+              <p
+                className="text-base md:text-lg leading-relaxed"
+                style={{ color: "var(--muted)" }}
+              >
+                Currently pursuing a B.E. in Computer Science. Previously interned
+                at SS Inphinite LLP building MERN-stack applications, and at Dlithe
+                Consultancy developing Python-based systems.
+              </p>
+            </div>
 
-            <div className="mt-24 md:mt-32 flex flex-wrap gap-6">
+            <div className="mt-10 md:mt-14 flex flex-wrap gap-6">
               <a
                 href="/resume1.pdf"
                 download="Aman_Shinde_Resume.pdf"
@@ -85,7 +87,7 @@ export default function About() {
               {capabilities.map((cap, i) => (
                 <motion.div
                   key={cap.number}
-                  className="group flex items-start gap-6 py-6 md:py-7 border-b transition-colors duration-200"
+                  className="group flex items-start gap-6 py-7 md:py-8 border-b transition-colors duration-200"
                   style={{ borderColor: "var(--border)" }}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -101,7 +103,7 @@ export default function About() {
                     >
                       {cap.label}
                     </div>
-                    <div className="label-mono mt-1.5" style={{ fontSize: "11px" }}>{cap.detail}</div>
+                    <div className="label-mono mt-2" style={{ fontSize: "11px" }}>{cap.detail}</div>
                   </div>
                   <span className="label-mono text-base opacity-0 group-hover:opacity-100 transition-opacity pt-1">→</span>
                 </motion.div>

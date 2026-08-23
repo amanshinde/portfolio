@@ -14,8 +14,89 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "hindustan-sales-corporation",
+    id: "vestora",
     number: "01",
+    title: "Vestora",
+    subtitle: "INVESTMENT & REFERRAL MANAGEMENT PLATFORM",
+    description:
+      "A production-grade MERN digital financial application featuring real-time capital allocation, 5-level referral commission distribution, ACID-compliant MongoDB transactions, idempotent daily yield calculations, and an immutable audit ledger.",
+    technologies: [
+      "React 19",
+      "Vite",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Recharts",
+      "Vercel",
+    ],
+    features: [
+      "ACID-compliant MongoDB transaction layer for multi-level referral payouts",
+      "5-tier recursive referral tree with automated commission distribution (L1–L5)",
+      "Idempotent daily yield calculations with immutable financial audit logs",
+      "Scroll-driven cinematic UX with interactive demo capital simulation",
+    ],
+    terminalVisual: [
+      "aman@dev:~/vestora$ npm run start",
+      "",
+      "  ✓ Vestora Financial Engine: ACTIVE",
+      "  ✓ Live at: https://vestora-self.vercel.app/",
+      "  ┌─────────────────────────────────────────┐",
+      "  │  ENGINE:  ACID-Compliant MERN Platform  │",
+      "  │  REFERRAL: 5-Tier Recursive Commission  │",
+      "  │  LEDGER:  Immutable Financial Audit     │",
+      "  │  STATUS:  ● Production Ready            │",
+      "  └─────────────────────────────────────────┘",
+      "",
+      "aman@dev:~/vestora$ _",
+    ],
+    githubUrl: undefined,
+    liveUrl: "https://vestora-self.vercel.app/",
+    image: "/projects/vestora-screenshot.png",
+  },
+  {
+    id: "goodsynk-erp",
+    number: "02",
+    title: "Goodsynk ERP",
+    subtitle: "ENTERPRISE RESOURCE PLANNING PLATFORM",
+    description:
+      "A sleek, responsive, and premium enterprise web platform for Goodsynk ERP. Designed and developed entirely during internship at SS Inphinite LLP, highlighting modular workflows, user roles, pricing tiers, and interactive system monitoring.",
+    technologies: [
+      "React 19",
+      "Vite",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Lucide React",
+      "React Router DOM",
+    ],
+    features: [
+      "Comprehensive ERP workflow, user role, and pricing module showcases",
+      "Smooth interactive transitions and micro-animations with Framer Motion",
+      "Engineered and deployed entirely during internship at SS Inphinite LLP",
+      "Integrated real-time system health monitoring component",
+    ],
+    terminalVisual: [
+      "aman@dev:~/goodsynk$ npm run build",
+      "",
+      "  ✓ Goodsynk ERP Platform: ACTIVE",
+      "  ✓ Live at: https://www.goodsynk.com/",
+      "  ┌─────────────────────────────────────────┐",
+      "  │  CLIENT:  SS Inphinite LLP              │",
+      "  │  PRODUCT: Goodsynk Enterprise ERP       │",
+      "  │  STACK:   React 19 · Vite · Tailwind    │",
+      "  │  STATUS:  ● Production Ready (Online)    │",
+      "  └─────────────────────────────────────────┘",
+      "",
+      "aman@dev:~/goodsynk$ _",
+    ],
+    githubUrl: undefined,
+    liveUrl: "https://www.goodsynk.com/",
+    image: "/projects/goodsynk.png",
+  },
+  {
+    id: "hindustan-sales-corporation",
+    number: "03",
     title: "Hindustan Sales Corporation",
     subtitle: "END-TO-END COMMERCIAL MERN PLATFORM",
     description:
@@ -53,7 +134,7 @@ export const projects: Project[] = [
   },
   {
     id: "spokenhands",
-    number: "02",
+    number: "04",
     title: "SpokenHands",
     subtitle: "SIGN LANGUAGE RECOGNITION",
     description:
@@ -92,7 +173,7 @@ export const projects: Project[] = [
   },
   {
     id: "sentinel-ai",
-    number: "03",
+    number: "05",
     title: "Sentinel AI",
     subtitle: "FACE RECOGNITION FOR CCTV",
     description:
@@ -136,7 +217,7 @@ export const projects: Project[] = [
   },
   {
     id: "gesture-presentation",
-    number: "04",
+    number: "06",
     title: "Gesture-Controlled Presentation",
     subtitle: "HANDS-FREE SLIDE NAVIGATION",
     description:
