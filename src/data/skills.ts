@@ -1,88 +1,54 @@
-export interface Skill {
+export interface SkillItem {
   name: string;
-  level: number; // 1-5, decorative category indicator only
+  icon: string;
 }
 
 export interface SkillCategory {
-  id: string;
   title: string;
-  icon: string; // terminal-style icon
-  accent: "green" | "cyan" | "purple";
-  skills: Skill[];
+  icon: string;
+  skills: SkillItem[];
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    id: "languages",
-    title: "LANGUAGES",
-    icon: ">_",
-    accent: "green",
+    title: "Technologies",
+    icon: "💻",
     skills: [
-      { name: "Python", level: 5 },
-      { name: "JavaScript", level: 5 },
-      { name: "C", level: 4 },
-      { name: "C++", level: 4 },
-      { name: "SQL", level: 4 },
-      { name: "HTML5", level: 5 },
-      { name: "CSS3", level: 5 },
+      { name: "Python", icon: "/skills/python.svg" },
+      { name: "C", icon: "/skills/c.svg" },
+      { name: "C++", icon: "/skills/cplusplus.svg" },
+      { name: "JavaScript", icon: "/skills/javascript.svg" },
+      { name: "SQL", icon: "/skills/sql.svg" },
+      { name: "React.js", icon: "/skills/react.svg" },
+      { name: "Node.js", icon: "/skills/nodejs.svg" },
+      { name: "Express.js", icon: "/skills/express.svg" },
+      { name: "HTML5", icon: "/skills/html5.svg" },
+      { name: "CSS3", icon: "/skills/css3.svg" },
+      { name: "MongoDB", icon: "/skills/mongodb.svg" },
+      { name: "MySQL", icon: "/skills/mysql.svg" },
+      { name: "REST APIs", icon: "/skills/restapi.svg" },
+      { name: "JSON", icon: "/skills/json.svg" },
     ],
   },
   {
-    id: "frameworks",
-    title: "FRAMEWORKS",
-    icon: "{ }",
-    accent: "cyan",
+    title: "Developer Tools",
+    icon: "🔧",
     skills: [
-      { name: "React.js", level: 5 },
-      { name: "Node.js", level: 5 },
-      { name: "Express.js", level: 5 },
-      { name: "REST APIs", level: 4 },
+      { name: "Git", icon: "/skills/git.svg" },
+      { name: "GitHub", icon: "/skills/github.svg" },
+      { name: "VS Code", icon: "/skills/vscode.svg" },
+      { name: "PyCharm", icon: "/skills/pycharm.svg" },
     ],
   },
   {
-    id: "databases",
-    title: "DATABASES",
-    icon: "DB",
-    accent: "green",
+    title: "Design Tools",
+    icon: "🎨",
     skills: [
-      { name: "MongoDB", level: 5 },
-      { name: "MySQL", level: 4 },
-    ],
-  },
-  {
-    id: "computer-vision",
-    title: "COMPUTER VISION",
-    icon: "CV",
-    accent: "purple",
-    skills: [
-      { name: "OpenCV", level: 4 },
-      { name: "dlib", level: 4 },
-      { name: "MediaPipe", level: 4 },
-    ],
-  },
-  {
-    id: "dev-tools",
-    title: "DEV TOOLS",
-    icon: "~/",
-    accent: "cyan",
-    skills: [
-      { name: "Git", level: 5 },
-      { name: "GitHub", level: 5 },
-      { name: "VS Code", level: 5 },
-      { name: "PyCharm", level: 4 },
-    ],
-  },
-  {
-    id: "design",
-    title: "DESIGN",
-    icon: "◆",
-    accent: "purple",
-    skills: [
-      { name: "Figma", level: 5 },
-      { name: "Adobe Illustrator", level: 4 },
-      { name: "Photoshop", level: 4 },
-      { name: "Canva", level: 5 },
-      { name: "Sketch", level: 3 },
+      { name: "Figma", icon: "/skills/figma.svg" },
+      { name: "Illustrator", icon: "/skills/illustrator.svg" },
+      { name: "Photoshop", icon: "/skills/photoshop.svg" },
+      { name: "Canva", icon: "/skills/canva.svg" },
+      { name: "SketchBook", icon: "/skills/sketchbook.svg" },
     ],
   },
 ];

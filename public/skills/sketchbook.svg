@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <rect width="128" height="128" rx="28" fill="#E65127"/>
+  <!-- Pencil shadow -->
+  <polygon points="64,36 100,128 64,128" fill="#B73210" opacity="0.4"/>
+  <!-- Pencil Tip wood -->
+  <polygon points="64,32 50,72 78,72" fill="#E8C39E"/>
+  <!-- Graphite Lead tip -->
+  <polygon points="64,32 59,46 69,46" fill="#2C2C2C"/>
+  <!-- Pencil Body -->
+  <rect x="50" y="72" width="28" height="56" fill="#384353"/>
+  <rect x="59" y="72" width="10" height="56" fill="#4B566B"/>
+</svg>
