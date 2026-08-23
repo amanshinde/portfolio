@@ -97,7 +97,7 @@ export default function Skills() {
 
         {/* Editorial Skills grid */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l"
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l"
           style={{ borderColor: "var(--border)" }}
         >
           {skillColumns.map((col, ci) => (
@@ -106,10 +106,10 @@ export default function Skills() {
               className="border-r border-b flex flex-col gap-10 bg-[#0a0a0a]"
               style={{
                 borderColor: "var(--border)",
-                paddingTop: "52px",
-                paddingBottom: "52px",
-                paddingLeft: "44px",
-                paddingRight: "28px",
+                paddingTop: "clamp(28px, 4vw, 52px)",
+                paddingBottom: "clamp(28px, 4vw, 52px)",
+                paddingLeft: "clamp(20px, 3vw, 44px)",
+                paddingRight: "clamp(12px, 2vw, 28px)",
               }}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -15,7 +15,7 @@ export default function About() {
       <div className="container-full">
         {/* Section header */}
         <motion.div
-          className="flex items-center gap-4 mb-16"
+          className="flex items-center gap-4 mb-8 md:mb-14"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -27,7 +27,7 @@ export default function About() {
         </motion.div>
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0">
           {/* Left: Large paragraph — 7 cols */}
           <motion.div
             className="lg:col-span-7 lg:pr-20 flex flex-col justify-between"
@@ -38,7 +38,7 @@ export default function About() {
           >
             <div className="flex flex-col gap-6">
               <p
-                className="font-sans text-2xl md:text-3xl xl:text-4xl leading-tight font-medium"
+                className="font-sans text-xl md:text-3xl xl:text-4xl leading-tight font-medium"
                 style={{ letterSpacing: "-0.02em", color: "var(--foreground)" }}
               >
                 I&apos;m a Computer Science engineer who works across

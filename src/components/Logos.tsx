@@ -46,8 +46,8 @@ export default function Logos() {
                 className="relative group border-b overflow-hidden"
                 style={{
                   borderColor: "var(--border)",
-                  paddingTop: "64px",
-                  paddingBottom: "64px",
+                  paddingTop: "clamp(32px, 5vw, 64px)",
+                  paddingBottom: "clamp(32px, 5vw, 64px)",
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}

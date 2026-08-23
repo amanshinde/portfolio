@@ -11,30 +11,38 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col overflow-hidden"
       style={{ paddingTop: "72px" }}
     >
-      {/* Full-height photo — pinned to the extreme right, hidden on mobile */}
+      {/* Photo — full-width ghost on mobile, right panel on lg+ */}
       <motion.div
-        className="hidden lg:block absolute top-0 right-0 bottom-0 w-[32vw] xl:w-[28vw]"
-        initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="absolute inset-0 lg:inset-auto lg:top-0 lg:right-0 lg:bottom-0 lg:w-[32vw] xl:w-[28vw]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        style={{ borderLeft: "1px solid var(--border)" }}
       >
-        <Image
-          src="https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482340/Aman_ykl6e5.png"
-          alt="Aman Shinde"
-          fill
-          sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 28vw"
-          className="object-cover object-center"
-          priority
-          style={{ filter: "grayscale(10%)" }}
-        />
-
+        <div
+          className="w-full h-full relative lg:border-l"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <Image
+            src="https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482340/Aman_ykl6e5.png"
+            alt="Aman Shinde"
+            fill
+            sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 28vw"
+            className="object-cover object-left lg:object-left"
+            priority
+            style={{ filter: "grayscale(10%)" }}
+          />
+          {/* Ghost overlay on mobile — darkens image to ~25% visibility */}
+          <div
+            className="absolute inset-0 lg:hidden"
+            style={{ background: "rgba(10,10,10,0.76)" }}
+          />
+        </div>
       </motion.div>
 
-      {/* Left: Text content — constrained so it doesn't overlap the photo */}
-      <div className="flex-1 flex flex-col justify-center pt-12 md:pt-12 pb-4 md:pb-6 pr-0 lg:pr-[34vw] xl:pr-[30vw]">
+      {/* Left: Text content — sits above the ghost image on mobile */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center pt-6 md:pt-10 lg:pt-12 pb-4 md:pb-6 pr-0 lg:pr-[34vw] xl:pr-[30vw]">
         <div className="container-full">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 md:gap-4">
 
             {/* Headline */}
             <div>
@@ -53,19 +61,19 @@ export default function Hero() {
               </motion.h1>
 
               <motion.p
-                className="mt-8 text-base md:text-lg max-w-2xl leading-relaxed"
+                className="mt-5 md:mt-8 text-sm md:text-lg max-w-xl leading-relaxed"
                 style={{ color: "var(--muted)" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.35 }}
               >
-                Full Stack Developer & CS Engineer. I build interfaces,
+                Full Stack Developer &amp; CS Engineer. I build interfaces,
                 backend systems and AI-powered applications with a focus
                 on performance and clean design.
               </motion.p>
 
               <motion.div
-                className="mt-10 flex flex-wrap items-center gap-4"
+                className="mt-6 md:mt-10 flex flex-wrap items-center gap-3 md:gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.45 }}
@@ -85,7 +93,7 @@ export default function Hero() {
 
             {/* Bottom meta */}
             <motion.div
-              className="flex flex-wrap gap-8 pt-6 border-t mt-6"
+              className="flex flex-wrap gap-6 md:gap-8 pt-5 md:pt-6 border-t mt-4 md:mt-6"
               style={{ borderColor: "var(--border)" }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -107,7 +115,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="w-full pb-5 pt-1 flex items-center justify-center gap-3 relative z-10"
+        className="relative z-10 w-full pb-5 pt-1 flex items-center justify-center gap-3"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}

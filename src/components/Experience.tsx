@@ -41,8 +41,8 @@ export default function Experience() {
               className="relative group border-b overflow-hidden"
               style={{
                 borderColor: "var(--border)",
-                paddingTop: "64px",
-                paddingBottom: "64px",
+                paddingTop: "clamp(32px, 5vw, 64px)",
+                paddingBottom: "clamp(32px, 5vw, 64px)",
               }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
