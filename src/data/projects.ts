@@ -133,8 +133,48 @@ export const projects: Project[] = [
     image: "https://res.cloudinary.com/dtvkccdmt/image/upload/v1787482592/goodsyck_myrfki.jpg",
   },
   {
-    id: "sentinel-ai",
+    id: "goodsynk-invoices",
     number: "04",
+    title: "Goodsynk Invoices",
+    subtitle: "SMART INVOICING & BILLING PLATFORM",
+    description:
+      "A production-grade invoicing and billing platform built for Goodsynk, featuring client management, itemised invoice generation, PDF export, payment tracking, and a clean dashboard — engineered and deployed during internship at SS Inphinite LLP.",
+    technologies: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "PDF Generation",
+      "REST APIs",
+    ],
+    features: [
+      "End-to-end invoice creation, editing, and PDF export workflow",
+      "Client & product management with persistent data layer",
+      "Payment status tracking with due-date reminders",
+      "Clean, responsive dashboard with real-time billing overview",
+    ],
+    terminalVisual: [
+      "aman@dev:~/goodsynk-invoices$ npm run start",
+      "",
+      "  ✓ Goodsynk Invoice Platform: ACTIVE",
+      "  ✓ Live at: https://invoice.goodsynk.com/",
+      "  ┌─────────────────────────────────────────┐",
+      "  │  CLIENT:  SS Inphinite LLP              │",
+      "  │  PRODUCT: Goodsynk Invoice System       │",
+      "  │  STACK:   React · Node · MongoDB        │",
+      "  │  STATUS:  ● Production Ready (Online)   │",
+      "  └─────────────────────────────────────────┘",
+      "",
+      "aman@dev:~/goodsynk-invoices$ _",
+    ],
+    githubUrl: undefined,
+    liveUrl: "https://invoice.goodsynk.com/",
+    image: "https://res.cloudinary.com/dtvkccdmt/image/upload/v1790259745/Screenshot_2026-09-24_194711_nnxrxw.png"
+  },
+  {
+    id: "sentinel-ai",
+    number: "05",
     title: "Sentinel AI",
     subtitle: "FACE RECOGNITION FOR CCTV",
     description:
@@ -178,7 +218,7 @@ export const projects: Project[] = [
   },
   {
     id: "spokenhands",
-    number: "05",
+    number: "06",
     title: "SpokenHands",
     subtitle: "SIGN LANGUAGE RECOGNITION",
     description:
@@ -217,7 +257,7 @@ export const projects: Project[] = [
   },
   {
     id: "gesture-presentation",
-    number: "06",
+    number: "07",
     title: "Gesture-Controlled Presentation",
     subtitle: "HANDS-FREE SLIDE NAVIGATION",
     description:
